@@ -5,7 +5,7 @@ pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 // Declaring the smart contract which inherits from OpenZeppelin's ERC721
-contract GPTMemebership is ERC721 {
+contract GPTMembership is ERC721 {
 
     // State variables
     address public owner; // Stores the address of the contract owner
@@ -76,7 +76,7 @@ contract GPTMemebership is ERC721 {
         require(_membershipId <= membershipTypes); // Membership ID must exist
 
         // Check if sent value is at least equal to the membership cost
-        require(msg.value >= memberships[_membershipId].cost, "Insufficent funds");
+        require(msg.value == memberships[_membershipId].cost, "Insufficent funds");
         totalMemberships++; // Increment total memberships
 
         // Record the user's membership
