@@ -1,5 +1,11 @@
+import React from "react";
+import { ContextProvider, useStateContext } from "./context/context";
+
 function App() {
-  return <div className="App">App js</div>;
+  const { DAPP_NAME } = useStateContext();
+  console.log(DAPP_NAME);
+
+  return <div>{DAPP_NAME}</div>;
 }
 
 export default App;
