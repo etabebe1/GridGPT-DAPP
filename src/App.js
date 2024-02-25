@@ -1,5 +1,5 @@
 import React from "react";
-import { ContextProvider, useStateContext } from "./context/context";
+import { useStateContext } from "./context/context";
 
 function App() {
   const { DAPP_NAME } = useStateContext();

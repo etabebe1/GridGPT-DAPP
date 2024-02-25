@@ -1,5 +1,6 @@
 // src/context/StateContext.js
 import React, { createContext, useContext, useState } from "react";
+import {ethers} from "ethers"
 
 const StateContext = createContext();
 
