@@ -7,12 +7,7 @@ async function main() {
   const GPTMembership = await hre.ethers.getContractFactory("GPTMembership");
   const gptMembership = await GPTMembership.deploy(NAME, SYMBOL);
 
-  // console.log(gptMembership.target);
-
-  // not necessary code
-  // await gptMembership.deployed();
-
-  console.log(`GPTMembership: ${gptMembership.target}`)
+  console.log(`GPTMembership: ${GPTMembership.target}`)
 }
 
 main().catch((error) => {

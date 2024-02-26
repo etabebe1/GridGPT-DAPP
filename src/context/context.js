@@ -32,7 +32,9 @@ export const ContextProvider = ({ children }) => {
 
       // GET THE CONTRACT DATA
       const contract = await connectingWithContract();
-      // console.log({ contract: contract });
+      // LOGS: LOGGING CONTRACT TO CONSOLE
+      console.log(contract);
+
     } catch (error) {
       console.log(error);
     }

@@ -76,7 +76,7 @@ contract GPTMembership is ERC721 {
         require(_membershipId <= membershipTypes); // Membership ID must exist
 
         // Check if sent value is at least equal to the membership cost
-        require(msg.value == memberships[_membershipId].cost, "Insufficent funds");
+        require(msg.value >= memberships[_membershipId].cost, "Insufficent funds");
         totalMemberships++; // Increment total memberships
 
         // Record the user's membership
@@ -100,12 +100,12 @@ contract GPTMembership is ERC721 {
     }
 
     // Function to get details of a membership
-    function getMemebership (uint256 _membershipId) public view returns (Membership memory) {
-        return memberships[_membershipId]; // Return the membership details
+    function getMembership (uint256 _memebeshipId) public view returns (Membership memory) {
+        return memberships[_memebeshipId]; // Return the membership details
     }
 
     // Function to get all memberships taken of a particular type
-    function getMemebershipTaken (uint256 _membershipId) public view returns (uint256[] memory) {
+    function getMembershipTaken (uint256 _membershipId) public view returns (uint256[] memory) {
         return membershipsTaken[_membershipId]; // Return the list of memberships
     }
 
