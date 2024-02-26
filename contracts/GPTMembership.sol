@@ -100,8 +100,8 @@ contract GPTMembership is ERC721 {
     }
 
     // Function to get details of a membership
-    function getMemebership (uint256 _memebeshipId) public view returns (Membership memory) {
-        return memberships[_memebeshipId]; // Return the membership details
+    function getMemebership (uint256 _membershipId) public view returns (Membership memory) {
+        return memberships[_membershipId]; // Return the membership details
     }
 
     // Function to get all memberships taken of a particular type

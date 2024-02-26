@@ -1,4 +1,4 @@
-import { ethers } from "ethers"; // Import ethers library for interacting with the Ethereum blockchain.
+import { ethers } from "ethers";
 import Web3Modal from "web3modal"; // Import Web3Modal for creating a modal that connects to various wallets.
 
 import {
@@ -27,7 +27,8 @@ export const checkIfWalletConnected = async () => {
 
 // POINT: IF WALLET CONNECTED PRESENCE, CONNECT TO WALLET
 // Function to prompt the user to connect their wallet if not already connected.
-export const connectToWallet = async () => {
+// let isRequestingAccount = false;
+export const connectWallet = async () => {
   try {
     if (!window.ethereum) return console.log("Install MetaMask"); // Check if the MetaMask extension is installed.
 
@@ -45,6 +46,7 @@ export const connectToWallet = async () => {
 
 // POINT: FETCH CONTRACT
 // Function to create a new ethers.Contract instance with the provided signer or provider.
+// NOTE: the function bellow is used in the connectingWithContract to get signer
 const fetchContract = (signerOrProvider) =>
   new ethers.Contract(
     GPT_MEMBERSHIP_ADDRESS, // The contract address.
@@ -56,14 +58,15 @@ const fetchContract = (signerOrProvider) =>
 // Function to connect with the contract using Web3Modal for wallet selection and ethers for blockchain interaction.
 export const connectingWithContract = async () => {
   try {
-    const web3modal = new Web3Modal(); // Create a new Web3Modal instance for connecting wallets.
-    const connection = await web3modal.connect(); // Wait for the user to select and connect their wallet.
-    const provider = new ethers.providers.Web3Provider(connection); // Create a new ethers provider using the wallet connection.
-    const signer = provider.getSigner(); // Get the signer from the provider, representing the connected account.
-    const contract = fetchContract(signer); // Fetch the contract instance using the signer for transactions.
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
 
-    return contract; // Return the contract instance for further interaction.
+    const signer = await provider.getSigner();
+    const contract = fetchContract(signer);
+
+    return contract;
   } catch (error) {
-    console.log(error); // Log any errors.
+    console.log(error);
   }
 };
