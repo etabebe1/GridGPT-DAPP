@@ -41,11 +41,12 @@ export const ContextProvider = ({ children }) => {
       // LOGS: Testing list membership items from deployed contract.
       // NOTE: If contract is re-deployed again the contract address will be changed therefore,
       // REMARK: That unless the same address is used these contract functions would not work in these case "getMembership".
-      console.log(oneMonth);
+      // console.log(oneMonth);
       // console.log(threeMonths);
       // console.log(sixMonths);
       // console.log(oneYear);
 
+      // POINT: GET CONTRACT MEMBERSHIPS
       const contractMembership = [
         {
           MEMBERSHIP_NAME: oneMonth?.name,
@@ -84,8 +85,24 @@ export const ContextProvider = ({ children }) => {
           ),
         },
       ];
+      setContractMembership(contractMembership);
+      // console.log(contractMembership);
 
-      console.log(contractMembership);
+      // POINT: GET USER MEMBERSHIP
+      let userMembership = await contract.getUserMembership(connectAccount);
+      userMembership = {
+        id: userMembership.id.toString(),
+        membershipId: userMembership.membershipId.toString(),
+        addressUser: userMembership.addressUser.toLowerCase(),
+        expireDate: userMembership.expireDate,
+        cost: ethers.utils.formatEther(userMembership.cost.toString(), "ether"),
+      };
+
+      // POINT: SAVING USER DETAILS TO LOCAL STORAGE
+      const proMember = JSON.stringify(userMembership);
+      localStorage.setItem("UserCredentials", proMember);
+      // console.log(userMembership);
+      // console.log(proMember);
     } catch (error) {
       console.log(error);
     }
