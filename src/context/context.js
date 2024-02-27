@@ -32,19 +32,19 @@ export const ContextProvider = ({ children }) => {
       const contract = await connectingWithContract();
       const connectAccount = await connectWallet();
       setAddress(connectAccount);
-      // console.log(contract);
-
-      // const gasEstimate = await contract.estimateGas.getMembership(1);
-      // console.log(`Estimated Gas: ${gasEstimate.toString()}`);
 
       const oneMonth = await contract.getMembership(1);
+      const threeMonths = await contract.getMembership(2);
+      const sixMonths = await contract.getMembership(3);
+      const oneYear = await contract.getMembership(4);
+
+      // LOGS: Testing list membership items from deployed contract.
+      // NOTE: If contract is re-deployed again the contract address will be changed therefore,
+      // REMARK: That unless the same address is used these contract functions would not work in these case "getMembership".
       console.log(oneMonth);
-
-      // const threeMonth = await contract.getMembership(2);
-      // const sixMonth = await contract.getMembership(3);
-      // const oneYear = await contract.getMembership(4);
-
-      // console.log(oneMonth);
+      console.log(threeMonths);
+      console.log(sixMonths);
+      console.log(oneYear);
     } catch (error) {
       console.log(error);
     }

@@ -1,9 +1,9 @@
 // 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
-import GPTMembership from "./GPTMembership.json";
+import GPTMembership from "../artifacts/contracts/GPTMembership.sol/GPTMembership.json";
 
 export const GPT_MEMBERSHIP_ADDRESS =
-  "0x4A679253410272dd5232B3Ff7cF5dbB88f295319";
+  "0x09635F643e140090A9A8Dcd712eD6285858ceBef";
 
 // The following functions are not part of the official GPT Membership contract, but they can be used to interact with it in a more
 
