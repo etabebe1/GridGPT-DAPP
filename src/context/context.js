@@ -11,8 +11,6 @@ import {
 
 const StateContext = createContext();
 
-export const useStateContext = () => useContext(StateContext);
-
 export const ContextProvider = ({ children }) => {
   const DAPP_NAME = "GPT_MEMBERSHIP";
 
@@ -25,28 +23,71 @@ export const ContextProvider = ({ children }) => {
   // POINT: FETCHING CONTRACT DATA
   const fetchData = async () => {
     try {
-      // LOAD DATA FROM LOCAL STORAGE
-      const freeTrail = localStorage.getItem("free-trail");
-      const FREE_TRIAL = JSON.parse(freeTrail);
-      setFree(freeTrail);
+      // LOADING DATA FROM LOCAL STORAGE ABOUT FREE TRIAL
+      const freeTrial = localStorage.getItem("freeTrial");
+      const FREE_TRIAL = JSON.parse(freeTrial);
+      setFree(freeTrial);
 
       // GET THE CONTRACT DATA
       const contract = await connectingWithContract();
-      // LOGS: LOGGING CONTRACT TO CONSOLE
-      console.log(contract);
+      const connectAccount = await connectWallet();
+      setAddress(connectAccount);
+      // console.log(contract);
 
+      // const gasEstimate = await contract.estimateGas.getMembership(1);
+      // console.log(`Estimated Gas: ${gasEstimate.toString()}`);
+
+      const oneMonth = await contract.getMembership(1);
+      console.log(oneMonth);
+
+      // const threeMonth = await contract.getMembership(2);
+      // const sixMonth = await contract.getMembership(3);
+      // const oneYear = await contract.getMembership(4);
+
+      // console.log(oneMonth);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const listMembership = async () => {
+    try {
+      const amount = 5; // The amount in ether you want to convert to Wei
+
+      // REMARK: Declared variables bellow are inputs required to call ""LIST"" function in the smart contract.
+      const MEMBERSHIP_NAME = "One Year";
+      const MEMBERSHIP_COST = ethers.utils.parseUnits(
+        amount.toString(),
+        "ether" // Correct unit of measure
+      );
+      const MEMBERSHIP_DATE = "February 27 2024";
+
+      // NOTE: Obtaining the smart contract so that to interact with the functions in it.
+      const contract = await connectingWithContract();
+
+      // NOTE: Calling a function from your smart contract and storing
+      const LIST = await contract.list(
+        MEMBERSHIP_NAME,
+        MEMBERSHIP_COST,
+        MEMBERSHIP_DATE
+      );
+
+      await LIST.wait();
+
+      console.log(LIST);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // useEffect(() => {
   //   fetchData();
   // }, []);
 
   return (
-    <StateContext.Provider value={{ fetchData, DAPP_NAME }}>
+    <StateContext.Provider value={{ fetchData, listMembership, DAPP_NAME }}>
       {children}
     </StateContext.Provider>
   );
 };
+
+export const useStateContext = () => useContext(StateContext);
