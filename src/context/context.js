@@ -42,9 +42,50 @@ export const ContextProvider = ({ children }) => {
       // NOTE: If contract is re-deployed again the contract address will be changed therefore,
       // REMARK: That unless the same address is used these contract functions would not work in these case "getMembership".
       console.log(oneMonth);
-      console.log(threeMonths);
-      console.log(sixMonths);
-      console.log(oneYear);
+      // console.log(threeMonths);
+      // console.log(sixMonths);
+      // console.log(oneYear);
+
+      const contractMembership = [
+        {
+          MEMBERSHIP_NAME: oneMonth?.name,
+          MEMBERSHIP_DATE: oneMonth?.date,
+          MEMBERSHIP_ID: oneMonth?.id.toString(),
+          MEMBERSHIP_COST: ethers.utils.formatEther(
+            oneMonth?.cost.toString(),
+            "ether"
+          ),
+        },
+        {
+          MEMBERSHIP_NAME: threeMonths?.name,
+          MEMBERSHIP_DATE: threeMonths?.date,
+          MEMBERSHIP_ID: threeMonths?.id.toString(),
+          MEMBERSHIP_COST: ethers.utils.formatEther(
+            threeMonths?.cost.toString(),
+            "ether"
+          ),
+        },
+        {
+          MEMBERSHIP_NAME: sixMonths?.name,
+          MEMBERSHIP_DATE: sixMonths?.date,
+          MEMBERSHIP_ID: sixMonths?.id.toString(),
+          MEMBERSHIP_COST: ethers.utils.formatEther(
+            sixMonths?.cost.toString(),
+            "ether"
+          ),
+        },
+        {
+          MEMBERSHIP_NAME: oneYear?.name,
+          MEMBERSHIP_DATE: oneYear?.date,
+          MEMBERSHIP_ID: oneYear?.id.toString(),
+          MEMBERSHIP_COST: ethers.utils.formatEther(
+            oneYear?.cost.toString(),
+            "ether"
+          ),
+        },
+      ];
+
+      console.log(contractMembership);
     } catch (error) {
       console.log(error);
     }
