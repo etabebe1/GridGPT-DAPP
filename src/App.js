@@ -4,7 +4,8 @@ import { ethers } from "ethers";
 import "./A.css";
 
 function App() {
-  const { DAPP_NAME, fetchData, listMembership } = useStateContext();
+  const { DAPP_NAME, fetchData, listMembership, mintMembership } =
+    useStateContext();
 
   return (
     <div>
@@ -16,8 +17,8 @@ function App() {
         <button className="btn" onClick={() => listMembership()}>
           List Membership
         </button>
-        <button className="btn" onClick={() => listMembership()}>
-          Lists of Membership
+        <button className="btn" onClick={() => mintMembership(1)}>
+          Mint Membership
         </button>
       </div>
     </div>
