@@ -168,7 +168,7 @@ export const ContextProvider = ({ children }) => {
         // address _user,
         // string memory _expiredDate
 
-        const mintTransaction = contract.mint(
+        const mintTransaction = await contract.mint(
           membership_id,
           connectAccount,
           expireDate.toString(),
