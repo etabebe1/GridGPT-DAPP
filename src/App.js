@@ -3,7 +3,6 @@ import { useStateContext } from "./context/context";
 import { ethers } from "ethers";
 import "./A.css";
 
-
 function App() {
   const { DAPP_NAME, fetchData, listMembership, mintMembership } =
     useStateContext();
