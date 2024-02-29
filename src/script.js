@@ -20,3 +20,28 @@ function loader(element) {
     }
   }, 300);
 }
+
+
+// Simulates typing effect for displaying text in an element.
+function typeText(element, text) {
+  // Gradually appends characters to element's content.
+  let index = 0;
+  let interval = setInterval(() => {
+    if (index < text.length) {
+      element.textContent += text.charAt(index);
+    } else {
+      clearInterval(interval);
+    }
+  }, 20);
+}
+
+// Generates a unique ID using the current timestamp and a random number.
+function generateUniqueId() {
+  // Returns a string that is likely to be unique.
+  const timestamp = Date.now();
+  const randomNumber = Math.random();
+  const hexadecimalString = randomNumber.toString(16);
+  return `id-${timestamp}-${hexadecimalString}`;
+}
+
+});
