@@ -59,3 +59,96 @@ function chatStripe(isAi, value, uniqueId) {
   </div>
     `;
 }
+
+
+
+// Handles form submission, displays user input, fetches and displays AI response.
+export const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Core functionality for handling chat interactions and managing free trials.
+  const data = new FormData(form);
+  chatContainer.innerHTML += chatStripe(false, data.get("prompt"));
+  form.reset();
+
+  const uniqueId = generateUniqueId();
+  chatContainer.innerHTML += chatStripe(true, "", uniqueId);
+
+  const messageDiv = document.getElementById(uniqueId);
+
+  loader(messageDiv);
+
+  // TODO: REPLACE API FETCH WITH AXIOS POST METHOD
+  const response = await fetch("http://localhost:4000", {
+    method: "POST",
+    header: {
+      "Content-Type": "application;json",
+    },
+
+    body: JSON.stringify({
+      prompt: data.get("prompt"),
+    }),
+  });
+
+  clearInterval(loadInterval);
+  messageDiv.innerHTML = " ";
+
+  if (response.ok) {
+    const data = await response.json();
+    const parsedData = data.bot.trim();
+
+    typeText(messageDiv, parsedData);
+    const freeTrial = localStorage.getItem("freeTrail");
+    const FREE_TRAIL = JSON.parse(freeTrial);
+
+    function freeTrailFunc(trail) {
+      const freeTrail = JSON.stringify(trail + 1);
+      localStorage.setItem("freeTrail", freeTrail);
+
+      trail === 10
+        ? remove_element.remove()
+        : (freeTry_element.innerHTML = trail + 1);
+    }
+
+    if (FREE_TRAIL === 1) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 2) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 3) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 4) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 5) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 6) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 7) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 8) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 9) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 10) {
+      freeTrailFunc(FREE_TRAIL);
+    } else if (FREE_TRAIL === 11) {
+      console.log("Pro Member");
+    } else {
+      const freeTrail = JSON.stringify(1);
+      localStorage.setItem("freeTrail", freeTrail);
+      freeTry_element.innerHTML = 1;
+    }
+  } else {
+    const error = await response.text();
+    messageDiv.innerHTML = `Something went wrong, Reload the page!`;
+    alert(error);
+  }
+};
+
+// Correctly attaches event listeners to form for handling submit and Enter key press.
+form.addEventListener("submit", handleSubmit());
+form.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    handleSubmit();
+  }
+});
+
