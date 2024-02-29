@@ -21,7 +21,6 @@ function loader(element) {
   }, 300);
 }
 
-
 // Simulates typing effect for displaying text in an element.
 function typeText(element, text) {
   // Gradually appends characters to element's content.
@@ -44,4 +43,19 @@ function generateUniqueId() {
   return `id-${timestamp}-${hexadecimalString}`;
 }
 
-});
+// Returns HTML markup for a chat message.
+function chatStripe(isAi, value, uniqueId) {
+  // Dynamically creates chat message based on parameters.
+  return `
+  <div class="wrapper">
+    <div class="chat">
+      <div class="profile">
+        <img src=${isAi ? "./bot.svg" : "user.svg"} alt=${
+    isAi ? "bot" : "user"
+  }/>
+        <div class="message" id=${uniqueId}>${value}</div>
+      </div>
+    </div>
+  </div>
+    `;
+}
