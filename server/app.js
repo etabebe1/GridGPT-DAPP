@@ -6,16 +6,31 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 
+const OpenAI = require("openai");
+
+const openai = new OpenAI({
+  apiKey: "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",
+});
 
 // making donEnv ready to use
 dotenv.config();
-
 
 // middleware
 app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common")); // used to indicate request and related info
+
+// POINT: openAI configuration completed
+app.post("/getResponse", async (req, res) => {
+  const prompt = req.body.prompt;
+
+  const completion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [{ role: "user", content: "You are a helpful assistant." }],
+    max_tokens: 100,
+  });
+});
 
 // port
 const port = process.env.PORT || 5000;
