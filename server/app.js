@@ -9,7 +9,7 @@ const morgan = require("morgan");
 const OpenAI = require("openai");
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
 });
 
 // making donEnv ready to use
@@ -27,9 +27,11 @@ app.post("/getResponse", async (req, res) => {
 
   const completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: "You are a helpful assistant." }],
-    max_tokens: 100,
+    messages: [{ role: "user", content: prompt }],
+    max_tokens: 50,
   });
+
+  // console.log(completion.choices[0].message);
 });
 
 // port

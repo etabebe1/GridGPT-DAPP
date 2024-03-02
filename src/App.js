@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useStateContext } from "./context/context";
 import { ethers } from "ethers";
-import "./A.css";
+
+// POINT: Components
+
+import Chat from "./pages/Chat";
 
 function App() {
   const { DAPP_NAME, fetchData, listMembership, mintMembership } =
@@ -9,6 +12,15 @@ function App() {
 
   return (
     <div>
+      <Chat />
+    </div>
+  );
+}
+
+export default App;
+
+/* 
+<div>
       <div className="icon_custom">{DAPP_NAME}</div>
       <div className="button">
         <button className="btn" onClick={() => fetchData()}>
@@ -22,7 +34,4 @@ function App() {
         </button>
       </div>
     </div>
-  );
-}
-
-export default App;
+*/
