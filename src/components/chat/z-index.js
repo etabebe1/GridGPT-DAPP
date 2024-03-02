@@ -1,12 +1,12 @@
-import Chat from "../../pages/Chat";
-import Chatting from "../../pages/Chatting";
-import Form from "../../pages/Form";
-import Help from "../../pages/Help";
-import History from "../../pages/History";
-import Modal from "../../pages/Modal";
-import Setting from "../../pages/Setting";
-import SideBar from "../../pages/SideBar";
-import Subscription from "../../pages/Subscription ";
+import Chat from "./Chat";
+import Chatting from "./Chatting";
+import Form from "./Form";
+import Help from "./Help";
+import History from "./History";
+import Modal from "./Modal";
+import Setting from "./Setting";
+import SideBar from "./SideBar";
+import Subscription from "./Subscription";
 
 export {
   Chat,

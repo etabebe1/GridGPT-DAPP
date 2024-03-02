@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Subscription() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <div>Subscription</div>;
 }
 
-export default Subscription
+export default Subscription;

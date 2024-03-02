@@ -1,0 +1,126 @@
+/* :root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --dark-smooth: #515050
+  --text-color: #212529;
+  --background-color: #ffffff;
+} */
+
+/* colors
+#240747
+#363636
+#f8f8f8
+#2bbef8;
+*/
+
+/* Base style */
+.main-wrapper {
+  height: 100vh;
+}
+
+.main-wrapper .navbar {
+  background: var(--primary-color);
+  width: 18rem;
+  height: 100%;
+}
+
+.inner-menu-panel .search-box-wrapper {
+  padding: 15px;
+}
+.inner-menu-panel .search-box {
+  background: var(--dark-color);
+  padding: 8px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 4px;
+}
+.inner-menu-panel .search-icon {
+  font-size: 1.5rem;
+}
+.inner-menu-panel .form-control {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 2px;
+  color: var(--light-color);
+}
+
+/* TODO: add functionality for toggle nav */
+.navbar .nav-toggle {
+  display: none;
+}
+.navbar-collapse > .inner-menu-panel .nav-close {
+  display: none;
+}
+
+.navbar-collapse .inner-links {
+  color: var(--light-color);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.navbar-collapse .inner-links > li {
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* MEDIA QUERY */
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .inner-menu-panel .search-box {
+    background: var(--dark-color);
+    padding: 5px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 4px;
+  }
+
+  .navbar-collapse .inner-links > li {
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 960px) {
+  .main-wrapper {
+    width: 90vw;
+    margin-left: 10vw;
+  }
+
+  .navbar-collapse .inner-links > li {
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+/* Small laptops */
+@media (min-width: 961px) and (max-width: 1024px) {
+  .main-wrapper {
+    width: 93vw;
+    margin-left: 7vw;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1025px) {
+  .main-wrapper {
+    width: 93vw;
+    margin-left: 7vw;
+  }
+}
