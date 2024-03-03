@@ -1,21 +1,13 @@
-import React, { useState } from "react";
-import { useStateContext } from "./context/context";
-import { ethers } from "ethers";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-// POINT: Style component
-import "./styles/variables.css";
-
-// POINT: Components
-import Chat from "./pages/chat";
+import Navigation from "./components/Navigation";
 
 function App() {
-  const { DAPP_NAME, fetchData, listMembership, mintMembership } =
-    useStateContext();
-
   return (
-    <div>
-      <Chat />
-    </div>
+    <Router>
+      <Navigation />
+    </Router>
   );
 }
 

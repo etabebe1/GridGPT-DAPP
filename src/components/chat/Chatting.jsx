@@ -1,22 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+// import { Link } from "react-router-dom";
 
 // POINT: Import context
 import { useStateContext } from "../../context/context";
 // POINT: Importing components
-import { Form } from "./z-index";
-// POINT: Importing style components
-import "../../styles/components/_chatting.css";
+// import { Form } from "./z-index";
 
 // POINT: React-Icons
-import { FaHandHoldingDollar } from "react-icons/fa6";
+// import { FaHandHoldingDollar } from "react-icons/fa6";
 import { FiAlignCenter } from "react-icons/fi";
 import { FiMaximize2 } from "react-icons/fi";
 import { FcSearch } from "react-icons/fc";
 
 function Chatting() {
-  // const { DAPP_NAME, fetchData } = useStateContext();
+  const { DAPP_NAME, fetchData } = useStateContext();
   // POINT: State Variables
   const [activeComponent, setActiveComponent] = useState("Ask anything");
+  const [proMember, setProMember] = useState("");
+  const [FreeTrial, setFreeTrial] = useState();
+  const [hide, setHide] = useState(true);
+
+  const PF = process.env.PUBLIC_FOLDER;
+
+  // POINT: State Management Context
+  const { Free, address } = useStateContext();
+
+  // console.log(Free);
+
+  // NOTE: loading data from local storage
+  const loadData = () => {
+    // POINT: user credentials form local storage
+    const UserCredentials = localStorage.getItem("UserCredentials");
+    const member = JSON.parse(UserCredentials);
+    setProMember(member);
+
+    const freeTrail = localStorage.getItem("freeTrail");
+    setFreeTrial(freeTrail);
+
+    // LOGS:
+    console.log(member);
+    console.log(freeTrail);
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   //POINT: Product list
   const productList = [
@@ -32,63 +60,9 @@ function Chatting() {
     "Essay writer",
   ];
 
-  const close = (e) => {};
+  // // const close = (e) => {};
 
-  return (
-    // <div className="wrapper">
-    <div className="main-wrapper">
-      
-      {/* Nav Start */}
-      <nav className="navbar">
-        <button className="nav-toggle">
-          <FiAlignCenter />
-        </button>
-
-        <div className="navbar-collapse">
-          <div className="inner-menu-panel">
-            <button className="nav-close">
-              <FiMaximize2 />
-            </button>
-
-            {/* search box */}
-            <div className="search-box-wrapper">
-              <div className="search-box">
-                <label for="form-control">
-                  <FcSearch className="search-icon"></FcSearch>
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="form-control"
-                  placeholder="Search here..."
-                />
-              </div>
-            </div>
-
-            {/* product links */}
-            <ul className="inner-links">
-              {productList.map((product, index) => {
-                return (
-                  <li
-                    key={index + 1}
-                    onClick={() => setActiveComponent(product)}
-                    className={product === activeComponent ? "active" : ""}
-                  >
-                    {product}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-      </nav>
-      {/* Nav End */}
-    
-    {/* Header Start */}
-    {/* Header End */}
-    </div>
-    // </div>
-  );
+  return <div className="main-wrapper flex">chat</div>;
 }
 
 export default Chatting;

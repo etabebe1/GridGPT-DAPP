@@ -22,6 +22,8 @@
 /* Base style */
 .main-wrapper {
   height: 100vh;
+  display: flex;
+  flex-direction: row;
 }
 
 .main-wrapper .navbar {
@@ -36,14 +38,18 @@
 .inner-menu-panel .search-box {
   background: var(--dark-color);
   padding: 8px;
-  display: flex;
-  justify-items: center;
-  align-items: center;
   gap: 5px;
   border-radius: 4px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
+
 .inner-menu-panel .search-icon {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 .inner-menu-panel .form-control {
   border: none;
@@ -54,6 +60,11 @@
 }
 
 /* TODO: add functionality for toggle nav */
+
+.navbar {
+  /* display: none; */
+}
+
 .navbar .nav-toggle {
   display: none;
 }
@@ -74,10 +85,32 @@
   cursor: pointer;
 }
 
+/* Header component */
+.header-container {
+  display: flex;
+  width: 100vw;
+  padding: 20px;
+  margin-inline: 50px;
+  border-bottom: 2px var(--primary-color) solid;
+}
+
+.header-container > img {
+  width: 32px;
+  height: 32px;
+}
+
+.header-container .navbar-toggle {
+  display: none;
+}
+
 /* MEDIA QUERY */
 
 /* Mobile devices */
 @media (max-width: 600px) {
+  .main-wrapper .navbar {
+    display: none;
+  }
+
   .inner-menu-panel .search-box {
     background: var(--dark-color);
     padding: 5px;
@@ -92,6 +125,11 @@
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
+  }
+
+  /* Header component */
+  .header-container .navbar-toggle {
+    display: block;
   }
 }
 

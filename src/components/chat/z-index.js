@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import Setting from "./Setting";
 import SideBar from "./SideBar";
 import Subscription from "./Subscription";
+import Upgrade from "./Upgrade";
 
 export {
   Chat,
@@ -18,4 +19,5 @@ export {
   Setting,
   SideBar,
   Subscription,
+  Upgrade,
 };

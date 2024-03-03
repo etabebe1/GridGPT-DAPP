@@ -24,9 +24,9 @@ export const ContextProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       // LOADING DATA FROM LOCAL STORAGE ABOUT FREE TRIAL
-      const freeTrial = localStorage.getItem("freeTrial");
-      const FREE_TRIAL = JSON.parse(freeTrial);
-      setFree(freeTrial);
+      const freeTrail = localStorage.getItem("freeTrail");
+      const FREE_TRIAL = JSON.parse(freeTrail);
+      setFree(freeTrail);
 
       // GET THE CONTRACT DATA
       const contract = await connectingWithContract();
@@ -87,7 +87,7 @@ export const ContextProvider = ({ children }) => {
         },
       ];
       setContractMembership(contractMembership);
-      console.log(contractMembership);
+      // console.log(contractMembership);
 
       // POINT: GET USER MEMBERSHIP
       let userMembership = await contract.getUserMembership(connectAccount);
@@ -142,7 +142,7 @@ export const ContextProvider = ({ children }) => {
 
       await LIST.wait();
 
-      console.log(LIST);
+      // console.log(LIST);
     } catch (error) {
       console.log(error);
     }
@@ -178,8 +178,8 @@ export const ContextProvider = ({ children }) => {
         );
 
         await mintTransaction.wait();
-        const freeTrial = JSON.stringify("Pro Member");
-        localStorage.setItem("freeTrial", freeTrial);
+        const freeTrail = JSON.stringify("Pro Member");
+        localStorage.setItem("freeTrail", freeTrail);
         console.log("Taken membership", mintTransaction);
         window.location.reload();
       }
@@ -214,13 +214,20 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <StateContext.Provider
-      value={{ fetchData, listMembership, mintMembership, DAPP_NAME }}
+      value={{
+        fetchData,
+        listMembership,
+        mintMembership,
+        Free,
+        address,
+        DAPP_NAME,
+      }}
     >
       {children}
     </StateContext.Provider>

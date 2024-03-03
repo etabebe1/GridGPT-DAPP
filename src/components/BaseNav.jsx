@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Help() {
+function BaseNav() {
   return (
     <div>
-      help components
+      
     </div>
   )
 }
 
-export default Help
+export default BaseNav
