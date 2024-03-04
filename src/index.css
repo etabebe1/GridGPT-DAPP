@@ -9,38 +9,40 @@
 /* #ff894c */
 /* #f8f8f8 */
 
+:root {
+  /* Primary palette */
+  --color-primary: #007bff; /* Blue */
+  --color-primary-dark: #0056b3; /* Darker blue */
+  --color-primary-dark-more: #001e3d; /* Darker blue */
+  --color-primary-light: #4098d7; /* Lighter blue */
+
+  /* Secondary palette */
+  --color-secondary: #6c757d; /* Gray */
+  --color-secondary-dark: #545b62; /* Darker gray */
+  --color-secondary-heavy-dark: #111d27; /* Darker heavy gray */
+  --color-secondary-heavy-dark-2: #21282e; /* Darker heavy gray */
+  --color-secondary-light: #adb5bd; /* Lighter gray */
+
+  /* Accent colors */
+  --color-accent: #17a2b8; /* Cyan */
+  --color-accent-dark: #138496; /* Darker cyan */
+  --color-accent-light: #5bc0de; /* Lighter cyan */
+
+  /* Neutral palette */
+  --color-neutral-dark: #343a40; /* Dark */
+  --color-neutral-light: #f8f9fa; /* Light */
+
+  /* Error / Warning / Success */
+  --color-error: #dc3545; /* Red */
+  --color-warning: #ffc107; /* Yellow */
+  --color-success: #28a745; /* Green */
+
+  /* Utility colors */
+  --color-text: #212529; /* Text color */
+  --color-background: #ffffff; /* Background color */
+}
+
 @layer base {
-  :root {
-    /* Primary palette */
-    --color-primary: #007bff; /* Blue */
-    --color-primary-dark: #0056b3; /* Darker blue */
-    --color-primary-light: #4098d7; /* Lighter blue */
-
-    /* Secondary palette */
-    --color-secondary: #6c757d; /* Gray */
-    --color-secondary-dark: #545b62; /* Darker gray */
-    --color-secondary-heavy-dark: #21282e; /* Darker heavy gray */
-    --color-secondary-light: #adb5bd; /* Lighter gray */
-
-    /* Accent colors */
-    --color-accent: #17a2b8; /* Cyan */
-    --color-accent-dark: #138496; /* Darker cyan */
-    --color-accent-light: #5bc0de; /* Lighter cyan */
-
-    /* Neutral palette */
-    --color-neutral-dark: #343a40; /* Dark */
-    --color-neutral-light: #f8f9fa; /* Light */
-
-    /* Error / Warning / Success */
-    --color-error: #dc3545; /* Red */
-    --color-warning: #ffc107; /* Yellow */
-    --color-success: #28a745; /* Green */
-
-    /* Utility colors */
-    --color-text: #212529; /* Text color */
-    --color-background: #ffffff; /* Background color */
-  }
-
   body {
     font-family: "Open Sans", sans-serif;
     background: var(--color-secondary-heavy-dark);

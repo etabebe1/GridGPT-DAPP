@@ -8,9 +8,9 @@ import { useStateContext } from "../../context/context";
 
 // POINT: React-Icons
 // import { FaHandHoldingDollar } from "react-icons/fa6";
-import { FiAlignCenter } from "react-icons/fi";
-import { FiMaximize2 } from "react-icons/fi";
-import { FcSearch } from "react-icons/fc";
+
+
+
 
 function Chatting() {
   const { DAPP_NAME, fetchData } = useStateContext();

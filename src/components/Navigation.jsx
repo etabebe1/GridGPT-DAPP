@@ -7,12 +7,23 @@ import {
   useLocation,
 } from "react-router-dom";
 
-// chat nav
+// Navigation Components
 import ChatNav from "./chat/ChatNav";
+import BaseNav from "./BaseNav";
 
 import Home from "../pages/home";
 import Chat from "../pages/chat";
 import Auth from "../pages/auth";
+
+// POINT: Import chat components
+import {
+  Chatting,
+  History,
+  Subscription,
+  Help,
+  Upgrade,
+  Setting,
+} from "../components/chat/z-index";
 
 function Navigation() {
   const location = useLocation();
@@ -21,16 +32,31 @@ function Navigation() {
   return (
     <>
       {isChatRoute ? (
-        <ChatNav />
+        <div>
+          <div>
+            {/* REMARK: Navigation for chat  */}
+            <ChatNav />
+
+            <Routes>
+              <Route path="/chatting" element={<Chatting />} />
+              <Route path="/history" element={<History />} />
+              <Route path="/subscription" element={<Subscription />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/upgrade" element={<Upgrade />} />
+              <Route path="/setting" element={<Setting />} />
+            </Routes>
+          </div>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/chat/*" element={<Chat />} />
+          </Routes>
+        </div>
       ) : (
         <div>
-          <div className="p-5 bg-gray-800 text-white">
-            <nav className="flex gap-4">
-              <Link to="/">Home</Link>
-              <Link to="/auth">Auth</Link>
-              <Link to="/chat">Chat</Link>
-            </nav>
-          </div>
+          {/* REMARK: Navigation for the entire application*/}
+          <BaseNav />
 
           <Routes>
             <Route path="/" element={<Home />} />
