@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 // Navigation Components
-import ChatNav from "./chat/ChatNav";
+// import ChatNav from "./chat/ChatNav";
 import BaseNav from "./BaseNav";
 
 import Home from "../pages/home";
@@ -33,25 +33,7 @@ function Navigation() {
     <>
       {isChatRoute ? (
         <div>
-          <div>
-            {/* REMARK: Navigation for chat  */}
-            <ChatNav />
-
-            <Routes>
-              <Route path="/chatting" element={<Chatting />} />
-              <Route path="/history" element={<History />} />
-              <Route path="/subscription" element={<Subscription />} />
-              <Route path="/help" element={<Help />} />
-              <Route path="/upgrade" element={<Upgrade />} />
-              <Route path="/setting" element={<Setting />} />
-            </Routes>
-          </div>
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/chat/*" element={<Chat />} />
-          </Routes>
+          <Chat />
         </div>
       ) : (
         <div>
@@ -70,3 +52,25 @@ function Navigation() {
 }
 
 export default Navigation;
+
+/* 
+          <div>
+
+<Chatting />
+
+            <Routes>
+              <Route path="/chatting" element={<Chatting />} />
+              <Route path="/history" element={<History />} />
+              <Route path="/subscription" element={<Subscription />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/upgrade" element={<Upgrade />} />
+              <Route path="/setting" element={<Setting />} />
+            </Routes>
+          </div>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/chat/" element={<Chat />} />
+          </Routes>
+*/

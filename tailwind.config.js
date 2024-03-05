@@ -23,6 +23,14 @@ module.exports = {
         success: "var(--color-success)",
         text: "var(--color-text)",
         background: "var(--color-background)",
+
+        gold: {
+          500: "#FFD700", // A nice shade of gold.
+          600: "#DAA520", // A slightly darker gold for hover state.
+        },
+      },
+      borderWidth: {
+        1: "1px", // Define a custom utility for a 1px border
       },
     },
   },
