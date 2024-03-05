@@ -10,7 +10,11 @@ import { IoMdSettings } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";
 import { RiMenu2Line } from "react-icons/ri";
 import { HiCurrencyDollar } from "react-icons/hi";
+import { FaGreaterThan } from "react-icons/fa6";
 import { useStateContext } from "../context/context";
+import { PiDotsThreeVerticalBold } from "react-icons/pi";
+import { MdOutlineModeEditOutline } from "react-icons/md";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const LINKS = [
   {
@@ -68,6 +72,8 @@ function Chat() {
   const [display, setDisplay] = useState("");
   const [FreeTrial, setFreeTrial] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [activeOptionsId, setActiveOptionsId] = useState(null);
 
   // POINT: State Management Context
   const { Free, address } = useStateContext();
@@ -75,6 +81,7 @@ function Chat() {
   // LOGS: State variable logs
   // console.log(currentTab);
   // console.log(currentChat);
+  console.log(showModal);
 
   // NOTE: loading data from local storage
   const loadData = () => {
@@ -103,6 +110,16 @@ function Chat() {
     setCurrentTab(activeTab);
   };
 
+  const toggleNav = () => {
+    setIsOpen(!isOpen);
+    setShowModal(false);
+  };
+
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+    setIsOpen(false);
+  };
+
   return (
     <div>
       {/* NAV START */}
@@ -111,7 +128,7 @@ function Chat() {
           isOpen ? "left-0" : "-left-full"
         } transition-left duration-300 z-50`}
       >
-        <nav className="w-[70vw] sm:w-[7vw] h-[100vh] sm:fixed flex flex-col bg-secondary-heavy-dark-2 text-white ">
+        <nav className="w-[70vw] sm:w-[7vw] h-[100vh] sm:fixed fixed flex flex-col bg-secondary-heavy-dark-2 text-white ">
           {/* Logo */}
 
           {/* Close || X mark button */}
@@ -159,12 +176,12 @@ function Chat() {
       {/* Header start */}
       {/* MENU START */}
 
-      <div className="header w-[100vw] sm:w-[93vw] h-[100vh] sm:fixed right-0">
+      <div className="header w-[100vw] sm:w-[93vw] h-[100vh] sm:fixed right-0 ">
         {/* mobile version header*/}
-        <div className="flex py-3 gap-4 shadow-2xl backdrop-blur-2xl sm:shadow-none sm:backdrop-blur-none sm:hidden">
+        <div className="flex py-3 gap-4 shadow-2xl backdrop-blur-2xl sm:shadow-none sm:backdrop-blur-none sm:hidden fixed z-50  w-full">
           <button
             className="text-2xl text-white p-2 sm:hidden"
-            onClick={() => setIsOpen(!isOpen)} // Toggle navigation visibility
+            onClick={() => toggleNav()} // Toggle navigation visibility
             aria-label="Toggle navigation"
           >
             <RiMenu2Line />
@@ -178,11 +195,59 @@ function Chat() {
                 className="w-[30px] h-[30px]"
               />
             </Link>
-            {
-              <div className="">
-                <span className="text-white text-lg">Ask anything</span>
-              </div>
-            }
+
+            <div onClick={() => handleShowModal()} className="cursor-pointer">
+              <span className="text-white text-sm flex flex-row justify-center items-center gap-2">
+                {currentChat}
+                <i
+                  className={`transition-all duration-500 ${
+                    showModal && "rotate-90"
+                  }`}
+                >
+                  <FaGreaterThan />
+                </i>
+              </span>
+            </div>
+
+            {showModal && (
+              <ul className="overflow-y-auto h-[80vh] text-white absolute top-16 right-0 flex flex-col gap-5">
+                {productList.map((list, index) => {
+                  return (
+                    <li
+                      key={index + 1}
+                      onClick={() => setCurrentChat(list)}
+                      className={`cursor-pointer hover:bg-primary-dark-more p-2 rounded flex flex-row items-center justify-between gap-5 ${
+                        currentChat === list ? "text-primary-dark" : ""
+                      }`}
+                    >
+                      <div className="flex flex-row items-center gap-1 text-sm">
+                        <span
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent onClick of the li from being called
+                            setActiveOptionsId(
+                              activeOptionsId === index ? null : index
+                            ); // Toggle visibility or close if already open
+                          }}
+                        >
+                          <PiDotsThreeVerticalBold />
+                        </span>
+                        <h3>{list}</h3>
+                      </div>
+                      {activeOptionsId === index && (
+                        <div className="flex flex-row items-center gap-3">
+                          <span className="text-green-500">
+                            <MdOutlineModeEditOutline />
+                          </span>
+                          <span className="text-red-500">
+                            <RiDeleteBin5Line />
+                          </span>
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
         </div>
 
@@ -263,7 +328,7 @@ function Chat() {
             </div>
             {/* Conditional rendered  component */}
 
-            <div className="header-body"></div>
+            <div className="header-body h-full bg-green-500"></div>
             <div className="header-form"></div>
           </div>
         </div>
