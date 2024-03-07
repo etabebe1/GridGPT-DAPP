@@ -4,26 +4,36 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "var(--color-primary)",
-        "primary-dark": "var(--color-primary-dark)",
-        "primary-dark-more": "var(--color-primary-dark-more)",
-        "primary-light": "var(--color-primary-light)",
-        secondary: "var(--color-secondary)",
-        "secondary-dark": "var(--color-secondary-dark)",
-        "secondary-heavy-dark": "var(--color-secondary-heavy-dark)",
-        "secondary-heavy-dark-2": "var(--color-secondary-heavy-dark-2)",
-        "secondary-light": "var(--color-secondary-light)",
-        accent: "var(--color-accent)",
-        "accent-dark": "var(--color-accent-dark)",
-        "accent-light": "var(--color-accent-light)",
-        "neutral-dark": "var(--color-neutral-dark)",
-        "neutral-light": "var(--color-neutral-light)",
-        error: "var(--color-error)",
-        warning: "var(--color-warning)",
-        success: "var(--color-success)",
-        text: "var(--color-text)",
-        background: "var(--color-background)",
+        colors: {
+          // Primary colors
+          "ai-blue": "#007bff",
+          "deep-space-blue": "#031d44",
+          "cybernetic-blue": "#00d1ff",
 
+          // Secondary colors
+          "quantum-silver": "#858585",
+          "digital-gray": "#2e2e2e",
+          "digital-gray-2": "#171717",
+          "matrix-green": "#23d160",
+
+          // Accent colors
+          "neural-network-neon": "#fd49a0",
+          "data-stream-orange": "#ff7f11",
+          "innovation-gold": "#ffd700",
+
+          // Neutral colors
+          "cloud-compute-white": "#f8f9fa",
+          "black-hole": "#000000",
+
+          /* Error / Warning / Success */
+          "color-error": "#dc3545" /* Red */,
+          "color-warning": "#ffc107" /* Yellow */,
+          "color-success": "#28a745" /* Green */,
+
+          /* Utility colors */
+          "color-text": "#212529" /* Text color */,
+          "color-background": "#ffffff" /* Background color */,
+        },
         gold: {
           500: "#FFD700", // A nice shade of gold.
           600: "#DAA520", // A slightly darker gold for hover state.
