@@ -110,7 +110,7 @@ function Chat() {
       setFreeTrial(freeTrail);
 
       // LOGS:
-      // console.log(member);
+      console.log(member);
       // console.log(freeTrail);
     };
 
@@ -130,12 +130,12 @@ function Chat() {
   const toggleNav = useCallback(() => {
     setIsOpen(!isOpen);
     setShowModal(false);
-  }, []);
+  }, [isOpen]);
 
   const handleShowModal = useCallback(() => {
     setShowModal(!showModal);
     setIsOpen(false);
-  }, []);
+  }, [showModal]);
 
   return (
     <div>
@@ -145,7 +145,7 @@ function Chat() {
           isOpen ? "left-0" : "-left-full"
         } transition-left duration-300 z-50`}
       >
-        <nav className="w-[70vw] sm:w-[7vw] h-[100vh] sm:fixed fixed flex flex-col bg-colors-digital-gray-2/85 text-white ">
+        <nav className="w-[70vw] sm:w-[7vw] h-[100vh] sm:fixed fixed flex flex-col bg-colors-digital-gray-2/75 text-white ">
           {/* Logo */}
 
           {/* Close || X mark button */}
@@ -199,7 +199,7 @@ function Chat() {
 
       <div className="header w-[100vw] sm:w-[93vw] h-[100vh] sm:fixed right-0 ">
         {/* mobile version header*/}
-        <div className="flex py-3 gap-4 shadow-lg backdrop-blur-2xl sm:shadow-none sm:backdrop-blur-none sm:hidden fixed w-full border-b-colors-digital-gray-2 border-b-1">
+        <div className="flex gap-4 shadow-lg backdrop-blur-2xl sm:shadow-none sm:backdrop-blur-none sm:hidden fixed w-full h-16 border-b-colors-digital-gray-2 bg-colors-digital-gray-2/75 border-b-1">
           <button
             className="text-2xl text-white p-2 sm:hidden"
             onClick={() => toggleNav()} // Toggle navigation visibility
@@ -231,7 +231,7 @@ function Chat() {
             </div>
 
             {showModal && (
-              <ul className="overflow-y-auto h-[80vh] text-white bg-colors-quantum-silver/35 absolute top-16 px-2 right-0 flex flex-col gap-5">
+              <ul className="overflow-y-auto flex-1 h-[78vh] text-white bg-colors-quantum-silver/35 absolute top-16 px-2 right-0 flex flex-col gap-5 z-30">
                 {productList.map((list, index) => {
                   return (
                     <li
@@ -270,6 +270,24 @@ function Chat() {
               </ul>
             )}
           </div>
+
+          {/* Conditional rendered  component */}
+          <div
+            className="flex flex-col w-full absolute top-16"
+            style={{ minHeight: "calc(100vh - 64px)" }}
+          >
+            <div className="flex-1 overflow-auto">
+              {/* Assuming Chatting component should fill available space and allow scrolling if content overflows */}
+              <Chatting />
+            </div>
+            <div
+              className={`w-full ${currentTab === "Chat" ? "block" : "hidden"}`}
+              style={{ maxHeight: "calc(100vh - 64px)" }}
+            >
+              {/* Form visible only when currentTab is "Chat" */}
+              {currentTab === "Chat" ? <Form /> : ""}
+            </div>
+          </div>
         </div>
 
         {/* big screen header  */}
@@ -307,7 +325,7 @@ function Chat() {
           )}
 
           <div className="body w-full hidden sm:block">
-            <div className="header-top bg-colors-digital-gray-2 rounded-b-sm shadow-lg p-5 w-full">
+            <div className="header-top bg-colors-digital-gray-2/70 rounded-b-sm shadow-lg py-5 w-full">
               {currentTab === "Chat" ? (
                 <div className="flex flex-row justify-around items-center md:font-medium md:text-base text-white">
                   <h3>{currentChat}</h3>
@@ -352,13 +370,13 @@ function Chat() {
             </div>
 
             {/* Conditional rendered  component */}
-            <div className="body  h-full">
+            <div className="body  h-full w-full  relative">
               <div className="header-body h-[75vh] ">
                 <Chatting />
               </div>
               <div
-                className={`header-form h-full ${
-                  currentTab === "Chat" ? "block" : "hidden"
+                className={`header-form h-full w-full top-[78%] right-0 ${
+                  currentTab === "Chat" ? "absolute" : "hidden"
                 }`}
               >
                 {currentTab === "Chat" ? <Form /> : ""}
