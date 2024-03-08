@@ -60,8 +60,6 @@ function chatStripe(isAi, value, uniqueId) {
     `;
 }
 
-
-
 // Handles form submission, displays user input, fetches and displays AI response.
 export const handleSubmit = async (e) => {
   e.preventDefault();
@@ -98,8 +96,8 @@ export const handleSubmit = async (e) => {
     const parsedData = data.bot.trim();
 
     typeText(messageDiv, parsedData);
-    const freeTrial = localStorage.getItem("freeTrail");
-    const FREE_TRAIL = JSON.parse(freeTrial);
+    const freeTrail = localStorage.getItem("freeTrail");
+    const FREE_TRAIL = JSON.parse(freeTrail);
 
     function freeTrailFunc(trail) {
       const freeTrail = JSON.stringify(trail + 1);
@@ -151,4 +149,3 @@ form.addEventListener("keyup", (e) => {
     handleSubmit();
   }
 });
-

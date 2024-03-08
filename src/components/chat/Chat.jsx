@@ -84,7 +84,7 @@ function Chat() {
   const [currentTab, setCurrentTab] = useState("Chat");
   const [currentChat, setCurrentChat] = useState(null);
   const [display, setDisplay] = useState("");
-  const [FreeTrial, setFreeTrial] = useState();
+  const [FreeTrail, setFreeTrial] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [activeOptionsId, setActiveOptionsId] = useState(null);
@@ -94,9 +94,13 @@ function Chat() {
 
   // LOGS: State variable logs
   // console.log(currentTab);
+  // console.log(FreeTrail);
   // console.log(currentChat);
   // console.log(showModal);
   // console.log(currentChat);
+  // useEffect(() => {
+  //   console.log(`FreeTrail updated to: ${FreeTrail}`);
+  // }, [FreeTrail]);
 
   useEffect(() => {
     productList.length > 0 && setCurrentChat(productList[0]);
@@ -105,22 +109,24 @@ function Chat() {
   // NOTE: loading data from local storage
   useEffect(() => {
     // POINT: user credentials form local storage
-    const loadData = () => {
-      const UserCredentials = localStorage.getItem("UserCredentials");
-      const member = JSON.parse(UserCredentials);
-      setDisplay(member);
+    const UserCredentials = localStorage.getItem("UserCredentials");
+    const member = JSON.parse(UserCredentials);
+    setDisplay(member);
 
-      //TODO: Before setting display => member check if user is registered for premium
-      const freeTrail = localStorage.getItem("freeTrail");
-      setFreeTrial(freeTrail);
+    //TODO: Before setting display => member check if user is registered for premium
+    const freeTrailStr = localStorage.getItem("freeTrail"); // Retrieving as string
+    const freeTrail = freeTrailStr ? parseInt(freeTrailStr, 10) : 0; // Convert to number
 
-      // LOGS:
-      // console.log(member);
-      // console.log(freeTrail);
-    };
+    setFreeTrial(freeTrail); // Update state
 
-    loadData();
+    // LOGS:
+    // console.log(member);
+    // console.log(freeTrail);
   }, []);
+
+  const close = (e) => {
+    e.preventDefault();
+  };
 
   const handleNavigation = useCallback(
     (route, activeTab) => {
@@ -289,8 +295,14 @@ function Chat() {
               className={`w-full ${currentTab === "Chat" ? "block" : "hidden"}`}
               style={{ maxHeight: "calc(100vh - 64px)" }}
             >
-              {/* Form visible only when currentTab is "Chat" */}
-              {currentTab === "Chat" ? <Form /> : ""}
+              {currentTab === "Chat" && FreeTrail && (
+                <Form
+                  close={close}
+                  proMember={display}
+                  address={address}
+                  freeTrail={FreeTrail}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -394,7 +406,14 @@ function Chat() {
                       }`}
                     >
                       {/* Form component, assumed to be at the bottom */}
-                      {currentTab === "Chat" && <Form />}
+                      {currentTab === "Chat" && (
+                        <Form
+                          close={close}
+                          proMember={display}
+                          address={address}
+                          freeTrail={FreeTrail}
+                        />
+                      )}
                     </div>
                   </div>
                 ) : (
