@@ -389,7 +389,7 @@ function Chat() {
                       <Chatting currentChat={currentChat} />
                     </div>
                     <div
-                      className={`header-form mt-auto ${
+                      className={`header-form mt-auto my-3 ${
                         currentTab === "Chat" ? "block" : "hidden"
                       }`}
                     >
