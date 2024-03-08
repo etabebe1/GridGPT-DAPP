@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function Chatting() {
-  return <div>This it the chatting component</div>;
+function Chatting({ currentChat }) {
+  useEffect(() => {
+    console.log(currentChat);
+  }, [currentChat]);
+  return (
+    <div className="flex flex-col h-full">
+      {currentChat && <div className="conversation"></div>}
+    </div>
+  );
 }
 
 export default Chatting;

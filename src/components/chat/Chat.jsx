@@ -79,10 +79,10 @@ function Chat() {
 
   const { DAPP_NAME, fetchData } = useStateContext();
   const navigate = useNavigate();
-  // const location =
+
   // POINT: State Variables
   const [currentTab, setCurrentTab] = useState("Chat");
-  const [currentChat, setCurrentChat] = useState(productList[0]);
+  const [currentChat, setCurrentChat] = useState(null);
   const [display, setDisplay] = useState("");
   const [FreeTrial, setFreeTrial] = useState();
   const [isOpen, setIsOpen] = useState(false);
@@ -96,6 +96,11 @@ function Chat() {
   // console.log(currentTab);
   // console.log(currentChat);
   // console.log(showModal);
+  // console.log(currentChat);
+
+  useEffect(() => {
+    productList.length > 0 && setCurrentChat(productList[0]);
+  }, []);
 
   // NOTE: loading data from local storage
   useEffect(() => {
@@ -110,7 +115,7 @@ function Chat() {
       setFreeTrial(freeTrail);
 
       // LOGS:
-      console.log(member);
+      // console.log(member);
       // console.log(freeTrail);
     };
 
@@ -278,7 +283,7 @@ function Chat() {
           >
             <div className="flex-1 overflow-auto">
               {/* Assuming Chatting component should fill available space and allow scrolling if content overflows */}
-              <Chatting />
+              <Chatting currentChat={currentChat} />
             </div>
             <div
               className={`w-full ${currentTab === "Chat" ? "block" : "hidden"}`}
@@ -370,16 +375,37 @@ function Chat() {
             </div>
 
             {/* Conditional rendered  component */}
-            <div className="body  h-full w-full  relative">
-              <div className="header-body h-[75vh] ">
-                <Chatting />
-              </div>
+            <div className="body h-full w-full relative bg-colors-digital-gray-2/30">
               <div
-                className={`header-form h-full w-full top-[78%] right-0 ${
-                  currentTab === "Chat" ? "absolute" : "hidden"
-                }`}
+                className={`header-body flex flex-col ${
+                  currentTab === "Chat" && "h-[75vh]"
+                } `}
+                style={{ minHeight: "calc(100vh - 64px)" }}
               >
-                {currentTab === "Chat" ? <Form /> : ""}
+                {currentChat ? (
+                  <div className="flex flex-col flex-1">
+                    <div className="flex-1 overflow-y-auto">
+                      {/* Chatting content, allowed to grow and scroll */}
+                      <Chatting currentChat={currentChat} />
+                    </div>
+                    <div
+                      className={`header-form mt-auto ${
+                        currentTab === "Chat" ? "block" : "hidden"
+                      }`}
+                    >
+                      {/* Form component, assumed to be at the bottom */}
+                      {currentTab === "Chat" && <Form />}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="container flex items-center justify-center flex-1 h-full">
+                    <img
+                      src={"/assets/svg/character/1.svg"}
+                      alt=""
+                      className="w-72 mx-auto"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
