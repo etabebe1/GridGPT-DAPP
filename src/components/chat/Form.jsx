@@ -10,14 +10,9 @@ function Form({ close, proMember, address, freeTrail }) {
   const date = new Date(today);
   const expiredDate = date.toLocaleDateString("en-US");
 
-  useEffect(() => {
-    // console.log(proMember);
-    // console.log(address);
-    // console.log(freeTrail);
-  }, [address, freeTrail, proMember]);
-  // freeTrail && console.log(freeTrail);
-
-  console.log(freeTrail);
+  // console.log(proMember);
+  // console.log(address);
+  // console.log(freeTrail);
 
   return (
     <form>

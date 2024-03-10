@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 
 function Chatting({ currentChat }) {
   useEffect(() => {
-    // console.log(currentChat);
+    currentChat && console.log(currentChat);
   }, [currentChat]);
+
   return (
     <div className="flex flex-col h-full">
-      {currentChat && <div className="conversation"></div>}
+      {currentChat && (
+        <div className="conversation">
+          {`The current chat is ${currentChat}`}
+        </div>
+      )}
     </div>
   );
 }

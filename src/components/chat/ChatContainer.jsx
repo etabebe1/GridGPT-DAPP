@@ -62,7 +62,9 @@ const LINKS = [
   },
 ];
 
-function Chat() {
+// Assuming currentChat is available in this scope. If it comes from props or state, adjust accordingly.
+
+function ChatContainer() {
   //POINT: Default conversation list
   const productList = [
     "Ask anything",
@@ -77,8 +79,19 @@ function Chat() {
     "Essay writer",
   ];
 
+  // const chatComponentArray = {
+  //   "/chat/chatting": () => <Chatting currentChat={currentChat} />,
+  //   "/chat/history": History,
+  //   "/chat/subscription": Subscription,
+  //   "/chat/help": Help,
+  //   "/chat/upgrade": Upgrade,
+  //   "/chat/setting": Setting,
+  // };
+
   const { DAPP_NAME, fetchData } = useStateContext();
   const navigate = useNavigate();
+  const location = useLocation();
+  const routePath = location.pathname;
 
   // POINT: State Variables
   const [currentTab, setCurrentTab] = useState("Chat");
@@ -88,6 +101,20 @@ function Chat() {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [activeOptionsId, setActiveOptionsId] = useState(null);
+
+  // Assuming currentChat is available in this scope. If it comes from props or state, adjust accordingly.
+  const chatComponentConfig = {
+    "/chat/chatting": Chatting,
+    "/chat/help": Help,
+    "/chat/history": History,
+    "/chat/modal": Modal,
+    "/chat/setting": Setting,
+    "/chat/sidebar": SideBar,
+    "/chat/subscription": Subscription,
+    "/chat/upgrade": Upgrade,
+  };
+
+  const ChatComponent = chatComponentConfig[routePath];
 
   // POINT: State Management Context
   const { Free, address } = useStateContext();
@@ -101,10 +128,7 @@ function Chat() {
   // useEffect(() => {
   //   console.log(`FreeTrail updated to: ${FreeTrail}`);
   // }, [FreeTrail]);
-
-  useEffect(() => {
-    productList.length > 0 && setCurrentChat(productList[0]);
-  }, []);
+  // console.log(ChatComponent);
 
   // NOTE: loading data from local storage
   useEffect(() => {
@@ -119,6 +143,7 @@ function Chat() {
 
     setFreeTrial(freeTrail); // Update state
 
+    // setCurrentChat(productList[0]);
     // LOGS:
     // console.log(member);
     // console.log(freeTrail);
@@ -230,14 +255,16 @@ function Chat() {
 
             <div onClick={() => handleShowModal()} className="cursor-pointer">
               <span className="text-white text-sm flex flex-row justify-center items-center gap-2">
-                {currentChat}
-                <i
-                  className={`transition-all duration-500 ${
-                    showModal && "rotate-90"
-                  }`}
-                >
-                  <FaGreaterThan />
-                </i>
+                {currentChat || "Start new chat"}
+                {productList.length > 0 && (
+                  <i
+                    className={`transition-all duration-500 ${
+                      showModal && "rotate-90"
+                    }`}
+                  >
+                    <FaGreaterThan />
+                  </i>
+                )}
               </span>
             </div>
 
@@ -287,9 +314,10 @@ function Chat() {
             className="flex flex-col w-full absolute top-16"
             style={{ minHeight: "calc(100vh - 64px)" }}
           >
+            {/* small screen chatting component */}
             <div className="flex-1 overflow-auto">
               {/* Assuming Chatting component should fill available space and allow scrolling if content overflows */}
-              <Chatting currentChat={currentChat} />
+              <ChatComponent currentChat={currentChat} />
             </div>
             <div
               className={`w-full ${currentTab === "Chat" ? "block" : "hidden"}`}
@@ -322,6 +350,7 @@ function Chat() {
                 className="px-4 flex flex-col text-white gap-5 overflow-scroll
                 "
               >
+                {/* here we will be using fetched data  */}
                 {productList.map((list, index) => {
                   return (
                     <li
@@ -345,7 +374,7 @@ function Chat() {
             <div className="header-top bg-colors-digital-gray-2/70 rounded-b-sm shadow-lg py-5 w-full">
               {currentTab === "Chat" ? (
                 <div className="flex flex-row justify-around items-center md:font-medium md:text-base text-white">
-                  <h3>{currentChat}</h3>
+                  <h3>{currentChat || "Start new chat"}</h3>
                   <div className="flex flex-row gap-3 items-center">
                     {display === "Pro Member" ? (
                       <Link to={"#"}>{display}</Link>
@@ -394,35 +423,63 @@ function Chat() {
                 } `}
                 style={{ minHeight: "calc(100vh - 64px)" }}
               >
-                {currentChat ? (
+                {currentTab === "Chat" && (
                   <div className="flex flex-col flex-1">
-                    <div className="flex-1 overflow-y-auto">
-                      {/* Chatting content, allowed to grow and scroll */}
-                      <Chatting currentChat={currentChat} />
-                    </div>
-                    <div
-                      className={`header-form mt-auto my-3 ${
-                        currentTab === "Chat" ? "block" : "hidden"
-                      }`}
-                    >
-                      {/* Form component, assumed to be at the bottom */}
-                      {currentTab === "Chat" && (
-                        <Form
-                          close={close}
-                          proMember={display}
-                          address={address}
-                          freeTrail={FreeTrail}
-                        />
-                      )}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="container flex items-center justify-center flex-1 h-full">
-                    <img
-                      src={"/assets/svg/character/1.svg"}
-                      alt=""
-                      className="w-72 mx-auto"
-                    />
+                    {currentChat ? (
+                      <div className="flex flex-col flex-1">
+                        <div className="flex-1 overflow-y-auto bg-red-500">
+                          {/* Large screen chatting component */}
+                          {/* Chatting content, allowed to grow and scroll */}
+                          <Chatting currentChat={currentChat} />
+                        </div>
+                        <div
+                          className={`header-form mt-auto my-3 ${
+                            currentTab === "Chat" ? "block" : "hidden"
+                          }`}
+                        >
+                          {/* Form component, assumed to be at the bottom */}
+                          {currentTab === "Chat" && (
+                            <Form
+                              close={close}
+                              proMember={display}
+                              address={address}
+                              freeTrail={FreeTrail}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="container flex items-center justify-center flex-1 h-full">
+                          <img
+                            src={"/assets/svg/character/1.svg"}
+                            alt=""
+                            className="w-72 mx-auto"
+                          />
+                        </div>
+                        <div className="flex flex-col flex-1">
+                          <div className="flex-1 overflow-y-auto">
+                            {/* Chatting content, allowed to grow and scroll */}
+                            <Chatting currentChat={currentChat} />
+                          </div>
+                          <div
+                            className={`header-form mt-auto my-3 ${
+                              currentTab === "Chat" ? "block" : "hidden"
+                            }`}
+                          >
+                            {/* Form component, assumed to be at the bottom */}
+                            {currentTab === "Chat" && (
+                              <Form
+                                close={close}
+                                proMember={display}
+                                address={address}
+                                freeTrail={FreeTrail}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 )}
               </div>
@@ -437,4 +494,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default ChatContainer;

@@ -1,4 +1,4 @@
-// import ChatNav from "./ChatNav";
+import ChatContainer from "./ChatContainer";
 import Chatting from "./Chatting";
 import Form from "./Form";
 import Help from "./Help";
@@ -10,7 +10,7 @@ import Subscription from "./Subscription";
 import Upgrade from "./Upgrade";
 
 export {
-  // ChatNav,
+  ChatContainer,
   Chatting,
   Form,
   Help,

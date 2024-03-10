@@ -1,11 +1,12 @@
 import React from "react";
 
-import Chat from "../components/chat/Chat";
+import { ChatContainer } from "../components/chat/z-index";
+// import { Chat } from "@mui/icons-material";
 
 function chat() {
   return (
     <div className="chat">
-      <Chat />
+      <ChatContainer />
     </div>
   );
 }

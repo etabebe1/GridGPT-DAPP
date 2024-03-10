@@ -14,7 +14,7 @@ function BaseNav() {
         <nav className="flex gap-4">
           <Link to="/">Home</Link>
           <Link to="/auth">Auth</Link>
-          <Link to="/chat">Chat</Link>
+          <Link to="/chat/chatting">Chat</Link>
         </nav>
       </div>
     </>
