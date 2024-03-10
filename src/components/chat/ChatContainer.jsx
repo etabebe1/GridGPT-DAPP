@@ -430,7 +430,7 @@ function ChatContainer() {
                         <div className="flex-1 overflow-y-auto bg-red-500">
                           {/* Large screen chatting component */}
                           {/* Chatting content, allowed to grow and scroll */}
-                          <Chatting currentChat={currentChat} />
+                          <ChatComponent currentChat={currentChat} />
                         </div>
                         <div
                           className={`header-form mt-auto my-3 ${
