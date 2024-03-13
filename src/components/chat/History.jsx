@@ -145,11 +145,14 @@ function History() {
         />
       </Helmet>
       {/* Main content starts here */}
-      <main className="bg-colors-digital-gray-2/10 pt-0 sm:pt-16 h-screen flex flex-col">
+      <main
+        className="bg-colors-digital-gray-2/10 pt-0 sm:pt-16 flex flex-col"
+        style={{ maxHeight: "calc(100vh - 64px)" }}
+      >
         <div
           aria-label="History Container"
           role="complementary"
-          className="history-container px-5 bg-colors-quantum-silver/20 rounded-lg flex flex-col flex-1 min-h-0"
+          className="history-container px-5 bg-colors-quantum-silver/20 rounded-t-lg flex flex-col flex-1 min-h-0"
         >
           <header className="top-element text-white text-sm sm:text-base flex flex-row items-center justify-between p-3 py-5">
             <h1 className="font-bold text-sm sm:text-lg">Detailed History</h1>
@@ -165,11 +168,11 @@ function History() {
           {/* Content area */}
           <section
             aria-label="Chat history"
-            className="body-element px-5 flex-grow overflow-y-auto"
+            className="body-element px-0 sm:px-5 flex-grow overflow-y-auto"
           >
             {historyArray.map(({ id, time, chatTitle, chatType }) => (
               <article
-                className="container flex flex-col sm:flex-row justify-between p-3 my-2 bg-colors-digital-gray-2/25 rounded-lg hover:bg-colors-digital-gray-2/50 transition duration-200 ease-in-out text-white/65"
+                className="container flex flex-col sm:flex-row justify-between p-3 my-2 bg-colors-digital-gray-2/25 rounded-lg hover:bg-colors-digital-gray-2/50 transition duration-200 ease-in-out text-white/65 cursor-pointer"
                 key={id}
               >
                 <h3 className="text-sm sm:text-base font-semibold text-center sm:text-left pb-2 sm:pb-0">

@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 // POINT: Importing react icons
-import { MdCardMembership, MdOutlineHelpOutline } from "react-icons/md";
+import { MdOutlineHelpOutline } from "react-icons/md";
 import { BsChatFill } from "react-icons/bs";
-import { IoMdGitNetwork } from "react-icons/io";
+import { TbHistory } from "react-icons/tb";
 import { GiUpgrade } from "react-icons/gi";
 import { IoMdSettings } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";
@@ -15,6 +15,7 @@ import { useStateContext } from "../../context/context";
 import { PiDotsThreeVerticalBold } from "react-icons/pi";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { ImStarFull } from "react-icons/im";
 
 /* POINT: Importing chat components */
 import Chatting from "./Chatting";
@@ -33,13 +34,13 @@ const chatComponentConfig = [
     component: Chatting,
   },
   {
-    icon: <IoMdGitNetwork />,
+    icon: <TbHistory />,
     name: "History",
     route: "/chat/history",
     component: History,
   },
   {
-    icon: <MdCardMembership />,
+    icon: <ImStarFull />,
     name: "Subscription",
     route: "/chat/subscription",
     component: Subscription,
@@ -253,7 +254,7 @@ function ChatContainer() {
                   <div className="flex flex-row gap-3 items-center">
                     {/* premium button */}
                     <Link to={"#"}>
-                      <button className="bg-gold-500 hover:bg-gold-600 text-white text-sm font-medium shadow-lg transform transition-all duration-150 ease-in-out animate-shine rounded flex items-center gap-2 p-1">
+                      <button className="flex space-x-1 h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-2 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
                         <span className="text-colors-ai-blue text-lg">
                           <HiCurrencyDollar />
                         </span>
@@ -398,8 +399,8 @@ function ChatContainer() {
 
                     {/* premium button */}
                     <Link to={"#"}>
-                      <button className="bg-gold-500 hover:bg-gold-600 text-white font-semibold p-1 shadow-lg transform transition-all duration-150 ease-in-out animate-shine rounded flex items-center gap-2">
-                        <span className="text-colors-deep-space-blue text-lg">
+                      <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                        <span className="text-colors-ai-blue text-lg">
                           <HiCurrencyDollar />
                         </span>
                         Get Premium
@@ -412,10 +413,10 @@ function ChatContainer() {
                 <div className="px-10">
                   <div className="text-white flex flex-row items-center justify-between">
                     <h3 className="text-lg">{currentTab}</h3>
-                    <div className="flex flex-row gap-3 bg-blue-500 items-center">
+                    <div className="flex flex-row gap-3 items-center">
                       {/* premium button */}
                       <Link to={"#"}>
-                        <button className="bg-gold-500 hover:bg-gold-600 text-white font-semibold p-1 shadow-lg transform transition-all duration-150 ease-in-out animate-shine rounded flex items-center gap-2">
+                        <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
                           <span className="text-colors-ai-blue text-lg">
                             <HiCurrencyDollar />
                           </span>
