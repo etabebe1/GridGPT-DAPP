@@ -95,8 +95,6 @@ function ChatContainer() {
   const [showModal, setShowModal] = useState(false);
   const [activeOptionsId, setActiveOptionsId] = useState(null);
 
-  console.log(currentTab);
-
   const componentObject = chatComponentConfig.find(
     (component) => component.route === routePath
   );
@@ -118,9 +116,8 @@ function ChatContainer() {
 
     setFreeTrial(freeTrail); // Update state
 
-    // Update current tab constantly
+    // Update currentTab
     const { name } = componentObject;
-
     setCurrentTab(name);
   }, [componentObject]);
 
@@ -132,7 +129,6 @@ function ChatContainer() {
     (route, activeTab) => {
       navigate(route);
       setIsOpen(false);
-      // console.log(activeTab);
       setCurrentTab(activeTab);
     },
     [navigate]
@@ -413,9 +409,9 @@ function ChatContainer() {
                 </div>
               ) : (
                 /* flex flex-row justify-between px-6 items-center md:font-medium md:text-base text-white */
-                <div className="">
-                  <div className="">
-                    <h3 className="text-lg bg-red-500">{currentTab}</h3>
+                <div className="px-10">
+                  <div className="text-white flex flex-row items-center justify-between">
+                    <h3 className="text-lg">{currentTab}</h3>
                     <div className="flex flex-row gap-3 bg-blue-500 items-center">
                       {/* premium button */}
                       <Link to={"#"}>
@@ -440,11 +436,11 @@ function ChatContainer() {
                 } `}
                 style={{ minHeight: "calc(100vh - 64px)" }}
               >
-                {currentTab === "Chat" && (
+                {currentTab === "Chat" ? (
                   <div className="flex flex-col flex-1">
                     {currentChat ? (
                       <div className="flex flex-col flex-1">
-                        <div className="flex-1 overflow-y-auto bg-red-500">
+                        <div className="flex-1 overflow-y-auto ">
                           {/* Large screen chatting component */}
                           {/* Chatting content, allowed to grow and scroll */}
                           <ChatComponent currentChat={currentChat} />
@@ -497,6 +493,10 @@ function ChatContainer() {
                         </div>
                       </>
                     )}
+                  </div>
+                ) : (
+                  <div>
+                    <ChatComponent />
                   </div>
                 )}
               </div>
