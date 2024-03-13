@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Subscription() {
-  const [isVisible, setIsVisible] = useState(true);
+  const navigate = useNavigate();
 
-  if (!isVisible) return null;
+  // Function to handle click
+  const handleCloseClick = () => {
+    navigate(-1); // Navigate back to the previous route
+  };
 
   return (
     <div
@@ -12,7 +16,7 @@ function Subscription() {
     >
       <div className="bg-white rounded-lg shadow-lg p-8 m-4 max-w-sm max-h-full overflow-auto">
         <button
-          onClick={() => setIsVisible(false)}
+          onClick={() => handleCloseClick()}
           className="float-right text-gray-700 hover:text-gray-900"
           aria-label="Close"
         >

@@ -17,48 +17,50 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
 /* POINT: Importing chat components */
-import {
-  Chatting,
-  Form,
-  Help,
-  History,
-  Modal,
-  Setting,
-  SideBar,
-  Subscription,
-  Upgrade,
-} from "./z-index";
+import Chatting from "./Chatting";
+import Form from "./Form";
+import Help from "./Help";
+import History from "./History";
+import Setting from "./Setting";
+import Subscription from "./Subscription";
+import Upgrade from "./Upgrade";
 
-const LINKS = [
+const chatComponentConfig = [
   {
     icon: <BsChatFill />,
-    title: "Chat",
+    name: "Chat",
     route: "/chat/chatting",
+    component: Chatting,
   },
   {
     icon: <IoMdGitNetwork />,
-    title: "History",
+    name: "History",
     route: "/chat/history",
+    component: History,
   },
   {
     icon: <MdCardMembership />,
-    title: "Subscription",
+    name: "Subscription",
     route: "/chat/subscription",
+    component: Subscription,
   },
   {
     icon: <MdOutlineHelpOutline />,
-    title: "Help",
+    name: "Help",
     route: "/chat/help",
+    component: Help,
   },
   {
     icon: <GiUpgrade />,
-    title: "Upgrade",
+    name: "Upgrade",
     route: "/chat/upgrade",
+    component: Upgrade,
   },
   {
     icon: <IoMdSettings />,
-    title: "Setting",
+    name: "Setting",
     route: "/chat/setting",
+    component: Setting,
   },
 ];
 
@@ -79,15 +81,6 @@ function ChatContainer() {
     "Essay writer",
   ];
 
-  // const chatComponentArray = {
-  //   "/chat/chatting": () => <Chatting currentChat={currentChat} />,
-  //   "/chat/history": History,
-  //   "/chat/subscription": Subscription,
-  //   "/chat/help": Help,
-  //   "/chat/upgrade": Upgrade,
-  //   "/chat/setting": Setting,
-  // };
-
   const { DAPP_NAME, fetchData } = useStateContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -102,33 +95,15 @@ function ChatContainer() {
   const [showModal, setShowModal] = useState(false);
   const [activeOptionsId, setActiveOptionsId] = useState(null);
 
-  // Assuming currentChat is available in this scope. If it comes from props or state, adjust accordingly.
-  const chatComponentConfig = {
-    "/chat/chatting": Chatting,
-    "/chat/help": Help,
-    "/chat/history": History,
-    "/chat/modal": Modal,
-    "/chat/setting": Setting,
-    "/chat/sidebar": SideBar,
-    "/chat/subscription": Subscription,
-    "/chat/upgrade": Upgrade,
-  };
+  console.log(currentTab);
 
-  const ChatComponent = chatComponentConfig[routePath];
+  const componentObject = chatComponentConfig.find(
+    (component) => component.route === routePath
+  );
+  const { component: ChatComponent } = componentObject;
 
   // POINT: State Management Context
   const { Free, address } = useStateContext();
-
-  // LOGS: State variable logs
-  // console.log(currentTab);
-  // console.log(FreeTrail);
-  // console.log(currentChat);
-  // console.log(showModal);
-  // console.log(currentChat);
-  // useEffect(() => {
-  //   console.log(`FreeTrail updated to: ${FreeTrail}`);
-  // }, [FreeTrail]);
-  // console.log(ChatComponent);
 
   // NOTE: loading data from local storage
   useEffect(() => {
@@ -143,11 +118,11 @@ function ChatContainer() {
 
     setFreeTrial(freeTrail); // Update state
 
-    // setCurrentChat(productList[0]);
-    // LOGS:
-    // console.log(member);
-    // console.log(freeTrail);
-  }, []);
+    // Update current tab constantly
+    const { name } = componentObject;
+
+    setCurrentTab(name);
+  }, [componentObject]);
 
   const close = (e) => {
     e.preventDefault();
@@ -203,22 +178,27 @@ function ChatContainer() {
               </Link>
             </div>
 
-            {LINKS.map((link, index) => {
-              // console.log(link.title === currentTab);
+            {chatComponentConfig.map((chatComponent, index) => {
+              // console.log(chatComponent);
 
               return (
                 <div
                   className={`group ${
-                    currentTab === link.title && "bg-colors-quantum-silver"
+                    currentTab === chatComponent.name &&
+                    "bg-colors-quantum-silver"
                   } hover:bg-colors-quantum-silver hover:opacity-60 p-3 mx-3 rounded hover:shadow-xl cursor-pointer transition-all duration-500`}
                   key={index + 1}
-                  onClick={() => handleNavigation(link.route, link.title)}
+                  onClick={() =>
+                    handleNavigation(chatComponent.route, chatComponent.name)
+                  }
                 >
                   <div className="flex flex-row gap-3  items-center">
                     <i className="text-2xl text-colors-cloud-compute-white   sm:text-lg group-hover:rotate-45 transition-all duration-150 ">
-                      {link.icon}
+                      {chatComponent.icon}
                     </i>
-                    <span className="text-sm sm:hidden">{link.title}</span>
+                    <span className="text-sm sm:hidden">
+                      {chatComponent.name}
+                    </span>
                   </div>
                 </div>
               );
@@ -244,7 +224,11 @@ function ChatContainer() {
             <RiMenu2Line />
           </button>
 
-          <div className="flex flex-row justify-center items-center gap-2">
+          <div
+            className={`flex flex-row items-center gap-1 ${
+              currentTab !== "Chat" && "justify-between w-full pr-2"
+            }`}
+          >
             <Link to={"/"}>
               <img
                 src={"/assets/svg/logo-icon.svg"}
@@ -254,18 +238,35 @@ function ChatContainer() {
             </Link>
 
             <div onClick={() => handleShowModal()} className="cursor-pointer">
-              <span className="text-white text-sm flex flex-row justify-center items-center gap-2">
-                {currentChat || "Start new chat"}
-                {productList.length > 0 && (
-                  <i
-                    className={`transition-all duration-500 ${
-                      showModal && "rotate-90"
-                    }`}
-                  >
-                    <FaGreaterThan />
-                  </i>
-                )}
-              </span>
+              {currentTab === "Chat" ? (
+                <h3 className="text-white text-sm flex flex-row justify-center items-center gap-2">
+                  {currentChat || "Start new chat"}
+                  {productList.length > 0 && (
+                    <i
+                      className={`transition-all duration-500 ${
+                        showModal && "rotate-90"
+                      }`}
+                    >
+                      <FaGreaterThan />
+                    </i>
+                  )}
+                </h3>
+              ) : (
+                <div className="flex items-center gap-2 text-white">
+                  <h3 className="text-base">{currentTab}</h3>
+                  <div className="flex flex-row gap-3 items-center">
+                    {/* premium button */}
+                    <Link to={"#"}>
+                      <button className="bg-gold-500 hover:bg-gold-600 text-white text-sm font-medium shadow-lg transform transition-all duration-150 ease-in-out animate-shine rounded flex items-center gap-2 p-1">
+                        <span className="text-colors-ai-blue text-lg">
+                          <HiCurrencyDollar />
+                        </span>
+                        Get Premium
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
 
             {showModal && (
@@ -315,23 +316,38 @@ function ChatContainer() {
             style={{ minHeight: "calc(100vh - 64px)" }}
           >
             {/* small screen chatting component */}
-            <div className="flex-1 overflow-auto">
-              {/* Assuming Chatting component should fill available space and allow scrolling if content overflows */}
-              <ChatComponent currentChat={currentChat} />
-            </div>
-            <div
-              className={`w-full ${currentTab === "Chat" ? "block" : "hidden"}`}
-              style={{ maxHeight: "calc(100vh - 64px)" }}
-            >
-              {currentTab === "Chat" && FreeTrail && (
+            {currentTab === "Chat" ? (
+              <div className="flex-1 overflow-auto">
+                {currentChat ? (
+                  <ChatComponent currentChat={currentChat} />
+                ) : (
+                  <>
+                    <div className="container flex items-center justify-center flex-1 h-full">
+                      <img
+                        src={"/assets/svg/character/1.svg"}
+                        alt=""
+                        className="w-72 mx-auto"
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              <div>
+                <ChatComponent />
+              </div>
+            )}
+
+            {currentTab === "Chat" && (
+              <div className="w-full">
                 <Form
                   close={close}
                   proMember={display}
                   address={address}
                   freeTrail={FreeTrail}
                 />
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -396,10 +412,11 @@ function ChatContainer() {
                   </div>
                 </div>
               ) : (
+                /* flex flex-row justify-between px-6 items-center md:font-medium md:text-base text-white */
                 <div className="">
-                  <div className="flex flex-row justify-between px-6 items-center md:font-medium md:text-base text-white">
-                    <h3 className="text-lg">{currentTab}</h3>
-                    <div className="flex flex-row gap-3 items-center">
+                  <div className="">
+                    <h3 className="text-lg bg-red-500">{currentTab}</h3>
+                    <div className="flex flex-row gap-3 bg-blue-500 items-center">
                       {/* premium button */}
                       <Link to={"#"}>
                         <button className="bg-gold-500 hover:bg-gold-600 text-white font-semibold p-1 shadow-lg transform transition-all duration-150 ease-in-out animate-shine rounded flex items-center gap-2">
