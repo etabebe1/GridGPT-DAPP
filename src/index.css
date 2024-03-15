@@ -40,6 +40,13 @@
   --color-background: #ffffff; /* Background color */
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
 @layer base {
   body {
     /* font-family: "Open Sans", sans-serif;
