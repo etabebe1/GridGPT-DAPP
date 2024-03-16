@@ -12,6 +12,7 @@ import { PiSealCheckDuotone } from "react-icons/pi";
 
 function Subscription() {
   const navigate = useNavigate();
+  const PF = process.env.PUBLIC_URL;
 
   return (
     <main
@@ -45,12 +46,126 @@ function Subscription() {
 
         <section
           aria-label=""
-          className="body-element sm:px-5 overflow-y-auto  bg-green-500"
+          className="body-element sm:px-5 overflow-y-auto  "
           style={{ flex: 1, height: "0px" }}
         >
-          <div className="bg-gray-500 sm:p-5">
+          <div className="sm:p-5">
             {/* lists */}
-            <div className="py-3 bg-blue-500"></div>
+            <div className="py-3 flex gap-4 flex-wrap justify-center">
+              {[1, 2, 3].map((membership, index) => {
+                return (
+                  <div
+                    key={index + 1}
+                    className="min-w-[15rem] w-[18rem] flex justify-center"
+                  >
+                    <Card
+                      color="gray"
+                      variant="gradient"
+                      className="w-full h-full max-w-[18rem] p-4 backdrop-blur-lg border border-gray-200/50 shadow-lg rounded-lg transition duration-300 ease-in-out hover:border-blue-500/50"
+                      style={{
+                        background: `linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3))`,
+                        backdropFilter: "blur(10px)",
+                        transition: "all 0.3s ease-in-out",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backdropFilter = "blur(15px)";
+                        e.currentTarget.style.background = `linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.4))`; // Slightly more visible gradient on hover
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backdropFilter = "blur(10px)";
+                        e.currentTarget.style.background = `linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3))`; // Original gradient
+                      }}
+                    >
+                      {/* Your Card component here */}
+                      <Card
+                        color="gray"
+                        variant="gradient"
+                        className="w-full max-w-[20rem] p-4"
+                      >
+                        {/* card header */}
+                        <CardHeader
+                          floated={false}
+                          shadow={false}
+                          color="transparent"
+                          className="m-0 mb-4 rounded-none border-b border-white/10 pb-4 text-center flex items-center justify-center space-x-2"
+                        >
+                          <img
+                            src={`${PF}/assets/svg/pricing/yearly.svg`}
+                            alt=""
+                          />
+                          <Typography
+                            variant="small"
+                            color="white"
+                            className="font-normal uppercase"
+                          >
+                            standard
+                          </Typography>
+                        </CardHeader>
+
+                        {/* card body */}
+                        <CardBody className="p-0">
+                          <ul className="flex flex-col gap-4">
+                            <li className="flex items-center gap-4">
+                              <span className="rounded-full border border-white/20 bg-white/20 p-1">
+                                <PiSealCheckDuotone />
+                              </span>
+                              <Typography className="font-normal">
+                                5 team members
+                              </Typography>
+                            </li>
+                            <li className="flex items-center gap-4">
+                              <span className="rounded-full border border-white/20 bg-white/20 p-1">
+                                <PiSealCheckDuotone />
+                              </span>
+                              <Typography className="font-normal">
+                                200+ components
+                              </Typography>
+                            </li>
+                            <li className="flex items-center gap-4">
+                              <span className="rounded-full border border-white/20 bg-white/20 p-1">
+                                <PiSealCheckDuotone />
+                              </span>
+                              <Typography className="font-normal">
+                                40+ built-in pages
+                              </Typography>
+                            </li>
+                            <li className="flex items-center gap-4">
+                              <span className="rounded-full border border-white/20 bg-white/20 p-1">
+                                <PiSealCheckDuotone />
+                              </span>
+                              <Typography className="font-normal">
+                                1 year free updates
+                              </Typography>
+                            </li>
+                            <li className="flex items-center gap-4">
+                              <span className="rounded-full border border-white/20 bg-white/20 p-1">
+                                <PiSealCheckDuotone />
+                              </span>
+                              <Typography className="font-normal">
+                                Life time technical support
+                              </Typography>
+                            </li>
+                          </ul>
+                        </CardBody>
+
+                        {/* card footer */}
+                        <CardFooter className="mt-12 p-0">
+                          <Button
+                            size="lg"
+                            color="white"
+                            className="p-2 hover:scale-[1.02] focus:scale-[1.02] active:scale-100 bg-slate-600"
+                            ripple={false}
+                            fullWidth={true}
+                          >
+                            Buy Now
+                          </Button>
+                        </CardFooter>
+                      </Card>
+                    </Card>
+                  </div>
+                );
+              })}
+            </div>
             {/* options */}
             <div className="py-5 flex items-center gap-1 flex-col sm:flex-row justify-center text-center">
               <button className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block ">
