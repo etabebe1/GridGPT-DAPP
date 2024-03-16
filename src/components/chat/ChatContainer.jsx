@@ -47,7 +47,7 @@ const chatComponentConfig = [
   },
   {
     icon: <MdOutlineHelpOutline />,
-    name: "Help",
+    name: "FAQ",
     route: "/chat/help",
     component: Help,
   },
