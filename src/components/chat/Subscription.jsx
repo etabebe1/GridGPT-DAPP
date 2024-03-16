@@ -20,16 +20,17 @@ function Subscription() {
       style={{ height: "calc(100vh - 64px)" }}
     >
       <div
-        aria-label="History Container"
+        aria-label="Subscription Container"
         role="complementary"
-        className="history-container px-5 bg-colors-quantum-silver/20 rounded-t-lg flex flex-col"
+        className="subscription-container px-5 bg-colors-quantum-silver/20 rounded-t-lg flex flex-col"
         style={{ height: "100%" }}
       >
         <header className="top-element text-white text-sm sm:text-base">
           <div className="flex flex-row items-center justify-between py-5">
-            <h1 className="font-bold text-sm sm:text-lg">Detailed History</h1>
+            <h1 className="font-bold text-sm sm:text-lg">Subscriptions</h1>
             <div className="flex items-center space-x-2">
               <h4>Currency</h4>
+              {/*TODO: select options is not working */}
               <select
                 name=""
                 id="currency"
@@ -46,7 +47,7 @@ function Subscription() {
 
         <section
           aria-label=""
-          className="body-element sm:px-5 overflow-y-auto  "
+          className="body-element sm:px-5 overflow-y-auto"
           style={{ flex: 1, height: "0px" }}
         >
           <div className="sm:p-5">
