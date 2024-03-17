@@ -95,6 +95,7 @@ function ChatContainer() {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [activeOptionsId, setActiveOptionsId] = useState(null);
+  const [displayUpgradeCard, setDisplayUpgradeCard] = useState(true);
 
   const componentObject = chatComponentConfig.find(
     (component) => component.route === routePath
@@ -147,6 +148,13 @@ function ChatContainer() {
 
   return (
     <div>
+      {/* Upgrade card layer */}
+      {/* <div className="upgrade-card-container">
+        {displayUpgradeCard && (
+          <Upgrade displayUpgradeCard={displayUpgradeCard} />
+        )}
+      </div> */}
+
       {/* NAV START */}
       <div
         className={`sm:left-0 fixed top-0 sm:w-[10vw] ${

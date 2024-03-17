@@ -146,7 +146,7 @@ function History() {
       </Helmet>
       {/* Main content starts here */}
       <main
-        className="bg-colors-digital-gray-2/10 pt-0 sm:pt-16 flex flex-col"
+        className="bg-colors-digital-gray-2/10 pt-0 flex flex-col"
         style={{ maxHeight: "calc(100vh - 64px)" }}
       >
         <div

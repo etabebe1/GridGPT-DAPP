@@ -109,6 +109,10 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   // POINT: LISTING MEMBERSHIP FOUND IN CONTRACT
   const listMembership = async () => {
     // TEST:
@@ -213,10 +217,6 @@ export const ContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <StateContext.Provider
