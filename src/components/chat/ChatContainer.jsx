@@ -455,7 +455,7 @@ function ChatContainer() {
                           <ChatComponent currentChat={currentChat} />
                         </div>
                         <div
-                          className={`header-form mt-auto my-3 ${
+                          className={`header-form mt-auto my-4 ${
                             currentTab === "Chat" ? "block" : "hidden"
                           }`}
                         >
@@ -485,7 +485,7 @@ function ChatContainer() {
                             <Chatting currentChat={currentChat} />
                           </div>
                           <div
-                            className={`header-form mt-auto my-3 ${
+                            className={`header-form mt-auto my-6 ${
                               currentTab === "Chat" ? "block" : "hidden"
                             }`}
                           >

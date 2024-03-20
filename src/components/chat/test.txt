@@ -1,0 +1,21 @@
+ return (
+                <div
+                  className={`group ${
+                    currentTab === chatComponent.name &&
+                    "bg-colors-quantum-silver"
+                  } hover:bg-colors-quantum-silver hover:opacity-60 p-3 mx-3 rounded hover:shadow-xl cursor-pointer transition-all duration-500`}
+                  key={index + 1}
+                  onClick={() =>
+                    handleNavigation(chatComponent.route, chatComponent.name)
+                  }
+                >
+                  <div className="flex flex-row gap-3  items-center">
+                    <i className="text-2xl text-colors-cloud-compute-white   sm:text-lg group-hover:rotate-45 transition-all duration-150 ">
+                      {chatComponent.icon}
+                    </i>
+                    <span className="text-sm sm:hidden">
+                      {chatComponent.name}
+                    </span>
+                  </div>
+                </div>
+              );
