@@ -1,16 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStateContext } from "../../context/context";
 
 function Setting() {
-  const { DAPP_NAME } = useStateContext();
-  console.log(DAPP_NAME);
-
   const PF = process.env.PUBLIC_URL;
+  const { DAPP_NAME, userMembership } = useStateContext();
+  const [user, setUser] = useState();
+
+  // userMembership && console.log(userMembership);
+  useEffect(() => {
+    userMembership && console.log(userMembership);
+  }, [userMembership]);
+
+  const [newUser, setNewUser] = useState({
+    name: user?.name || "",
+    surname: user?.surname || "",
+    email: user?.email || "",
+    password: user?.password || "",
+    passwordConfirm: user?.passwordConfirm || "",
+  });
+
+  useEffect(() => {
+    const string = localStorage.getItem("userDetails");
+    const parsedObject = JSON.parse(string);
+    if (parsedObject?.name) {
+      setUser(parsedObject);
+    }
+  }, []);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
   });
+
+  const handleFormFieldChange = (fieldName, e) => {
+    setUser({ ...newUser, [fieldName]: e.target.value });
+  };
+
+  const updateUser = () => {
+    const JSONObject = JSON.stringify(newUser);
+    localStorage.setItem("userDetails", JSONObject);
+    window.location.reload();
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;

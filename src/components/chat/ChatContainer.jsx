@@ -95,7 +95,6 @@ function ChatContainer() {
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [activeOptionsId, setActiveOptionsId] = useState(null);
-  const [displayUpgradeCard, setDisplayUpgradeCard] = useState(true);
 
   const componentObject = chatComponentConfig.find(
     (component) => component.route === routePath
