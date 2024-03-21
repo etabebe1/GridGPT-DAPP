@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useStateContext } from "../../context/context";
 
+// icons
+import { CameraAltOutlined } from "@mui/icons-material";
+
 function Setting() {
   const PF = process.env.PUBLIC_URL;
   const { DAPP_NAME, userMembership } = useStateContext();
   const [user, setUser] = useState();
 
-  // userMembership && console.log(userMembership);
-  useEffect(() => {
-    userMembership && console.log(userMembership);
-  }, [userMembership]);
+  // Object.keys(userMembership).length > 0 && console.log(userMembership);
 
   const [newUser, setNewUser] = useState({
     name: user?.name || "",
@@ -32,6 +32,11 @@ function Setting() {
     lastName: "",
     email: "",
   });
+
+  // TODO: unnecessary useEffect function remove it!
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   const handleFormFieldChange = (fieldName, e) => {
     setUser({ ...newUser, [fieldName]: e.target.value });
@@ -67,7 +72,7 @@ function Setting() {
         style={{ height: "100%" }}
       >
         {/* initial  form container */}
-        <div className="w-[90%] sm:w-full h-[35rem] sm:h-[80vh] bg-colors-digital-gray/50 px-5 rounded-lg mx-auto mt-2 sm:mt-0">
+        <div className="w-[90%] sm:w-full h-[42rem] sm:h-[90vh] bg-colors-digital-gray/50 px-5 rounded-lg mx-auto mt-2 sm:mt-0">
           <header className="top-element text-white text-sm sm:text-base">
             <div className="flex flex-row items-center justify-between py-5">
               <h1 className="font-bold text-sm sm:text-lg">My Account</h1>
@@ -75,24 +80,37 @@ function Setting() {
             <hr className="border-1 border-colors-quantum-silver w-full" />
           </header>
 
-          <div className="bg-logo-container relative flex flex-row py-2">
+          <div className="bg-logo-container relative flex flex-col py-2">
             <img
               src={`${PF}/assets/images/info-bg.jpg`}
               className="h-[6rem] w-full object-cover rounded-md"
               alt=""
             />
-            <div className="logo-container absolute w-full top-16">
+
+            <div className="profile-container mx-auto w-full -top-8 relative">
               <img
                 src={`${PF}/GridGPT-logo.png`}
-                className=" w-[5rem] h-[5rem]  mx-auto"
+                className=" w-[5rem] h-[5rem]  mx-auto border rounded-full mb-4"
                 alt=""
               />
+              <div className="user-profile text-center absolute w-full top-12 left-9">
+                <label htmlFor="profile">
+                  <i className=" text-white cursor-pointer">
+                    <CameraAltOutlined />
+                  </i>
+                </label>
+                <input type="file" id="profile" className="hidden" />
+              </div>
+              <div className="text-center text-white">
+                <h4>{user?.name}</h4>
+                <p>{user?.email}</p>
+              </div>
             </div>
           </div>
 
           <section
             aria-label=""
-            className="body-element sm:px-5"
+            className="body-element sm:px-5 relative -top-16"
             style={{ flex: 1, height: "0px" }}
           >
             <form onSubmit={handleSubmit} className="account-update-form ">

@@ -105,14 +105,12 @@ export const ContextProvider = ({ children }) => {
         ),
       };
 
-      // console.log(userMembership);
-
       setUserMembership(userMembershipData);
 
       // POINT: SAVING USER DETAILS TO LOCAL STORAGE
       const proMember = JSON.stringify(userMembership);
       localStorage.setItem("UserCredentials", proMember);
-      // console.log(userMembership);
+      // console.log(userMembershipData);
       // console.log(proMember);
     } catch (error) {
       console.log(error);
