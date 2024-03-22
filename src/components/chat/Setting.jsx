@@ -20,6 +20,10 @@ function Setting() {
   });
 
   useEffect(() => {
+    console.log(newUser);
+  }, [newUser]);
+
+  useEffect(() => {
     const string = localStorage.getItem("userDetails");
     const parsedObject = JSON.parse(string);
     if (parsedObject?.name) {
@@ -27,40 +31,14 @@ function Setting() {
     }
   }, []);
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-  });
-
-  // TODO: unnecessary useEffect function remove it!
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
-  const handleFormFieldChange = (fieldName, e) => {
-    setUser({ ...newUser, [fieldName]: e.target.value });
+  const handleFormFieldChange = (fieldName, evt) => {
+    setNewUser({ ...newUser, [fieldName]: evt.target.value });
   };
 
   const updateUser = () => {
     const JSONObject = JSON.stringify(newUser);
     localStorage.setItem("userDetails", JSONObject);
     window.location.reload();
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Updating with:", formData);
-    // Integration with update logic or API call goes here
-  };
-
-  const handleCancel = () => {
-    setFormData({ firstName: "", lastName: "", email: "" });
   };
 
   return (
@@ -72,14 +50,13 @@ function Setting() {
         style={{ height: "100%" }}
       >
         {/* initial  form container */}
-        <div className="w-[90%] sm:w-full h-[42rem] sm:h-[90vh] bg-colors-digital-gray/50 px-5 rounded-lg mx-auto mt-2 sm:mt-0">
+        <div className="w-[90%] sm:w-full h-[42rem] sm:h-[90vh] bg-colors-digital-gray/50 rounded-lg mx-auto mt-2 sm:mt-0 px-5">
           <header className="top-element text-white text-sm sm:text-base">
             <div className="flex flex-row items-center justify-between py-5">
               <h1 className="font-bold text-sm sm:text-lg">My Account</h1>
             </div>
             <hr className="border-1 border-colors-quantum-silver w-full" />
           </header>
-
           <div className="bg-logo-container relative flex flex-col py-2">
             <img
               src={`${PF}/assets/images/info-bg.jpg`}
@@ -87,20 +64,24 @@ function Setting() {
               alt=""
             />
 
-            <div className="profile-container mx-auto w-full -top-8 relative">
-              <img
-                src={`${PF}/GridGPT-logo.png`}
-                className=" w-[5rem] h-[5rem]  mx-auto border rounded-full mb-4"
-                alt=""
-              />
-              <div className="user-profile text-center absolute w-full top-12 left-9">
-                <label htmlFor="profile">
-                  <i className=" text-white cursor-pointer">
-                    <CameraAltOutlined />
-                  </i>
-                </label>
-                <input type="file" id="profile" className="hidden" />
+            <div className="profile-container mx-auto w-full -top-8 relative flex justify-center">
+              <div className="relative inline-block">
+                <img
+                  src={`${PF}/GridGPT-logo.png`}
+                  className="w-[5rem] h-[5rem] border rounded-full"
+                  alt=""
+                />
+                {/* Camera Icon Positioned on top right of the Profile Image */}
+                <div className="absolute top-0 right-0 transform translate-x-1 translate-y-12">
+                  <label htmlFor="profile">
+                    <i className="text-white cursor-pointer">
+                      <CameraAltOutlined />
+                    </i>
+                  </label>
+                  <input type="file" id="profile" className="hidden" />
+                </div>
               </div>
+
               <div className="text-center text-white">
                 <h4>{user?.name}</h4>
                 <p>{user?.email}</p>
@@ -113,7 +94,7 @@ function Setting() {
             className="body-element sm:px-5 relative -top-16"
             style={{ flex: 1, height: "0px" }}
           >
-            <form onSubmit={handleSubmit} className="account-update-form ">
+            <form className="account-update-form ">
               {/* input container */}
               <div className="form-inputs flex border-b-1 border-colors-quantum-silver py-5 my-5">
                 <div className="w-full flex flex-wrap gap-4 justify-center sm:justify-start">
@@ -128,8 +109,8 @@ function Setting() {
                       type="text"
                       id="firstName"
                       name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
+                      placeholder={user?.name}
+                      onChange={(evt) => handleFormFieldChange("name", evt)}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -144,8 +125,8 @@ function Setting() {
                       type="text"
                       id="lastName"
                       name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
+                      placeholder={user?.lastName}
+                      onChange={(evt) => handleFormFieldChange("surname", evt)}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -160,8 +141,8 @@ function Setting() {
                       type="email"
                       id="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleChange}
+                      placeholder={user?.email}
+                      onChange={(evt) => handleFormFieldChange("email", evt)}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -178,7 +159,6 @@ function Setting() {
                 </button>
                 <button
                   type="button"
-                  onClick={handleCancel}
                   className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 cursor-pointer"
                 >
                   Cancel
@@ -189,7 +169,7 @@ function Setting() {
         </div>
 
         {/* second form container */}
-        <div className="w-[90%] sm:w-full h-[37rem] sm:h-[80vh] bg-colors-digital-gray/50 px-5 rounded-lg mx-auto my-5 sm:mt-0">
+        <div className="w-[90%] sm:w-[100%] h-[40rem] sm:h-[80vh] bg-colors-digital-gray/50 px-5 rounded-lg mx-auto my-5 sm:mt-0">
           <header className="top-element text-white text-sm sm:text-base">
             <div className="flex flex-row items-center justify-between py-5">
               <h1 className="font-bold text-sm sm:text-lg">Membership</h1>
@@ -202,7 +182,7 @@ function Setting() {
             className="body-element sm:px-5"
             style={{ flex: 1, height: "0px" }}
           >
-            <form onSubmit={handleSubmit} className="account-update-form ">
+            <form className="account-update-form ">
               {/* input container */}
               <div className="form-inputs flex border-b-1 border-colors-quantum-silver py-5 my-5">
                 <div className="w-full flex flex-wrap gap-4 justify-center sm:justify-start">
@@ -217,8 +197,6 @@ function Setting() {
                       type="text"
                       id="membershipPlan"
                       name="membershipPlan"
-                      value={formData.firstName}
-                      onChange={handleChange}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -233,8 +211,6 @@ function Setting() {
                       type="text"
                       id="Membership Cost"
                       name="Membership Cost"
-                      value={formData.lastName}
-                      onChange={handleChange}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -249,8 +225,6 @@ function Setting() {
                       type="emailId"
                       id="emailId"
                       name="emailId"
-                      value={formData.email}
-                      onChange={handleChange}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -265,8 +239,6 @@ function Setting() {
                       type="membershipExpired"
                       id="membershipExpired"
                       name="membershipExpired"
-                      value={formData.email}
-                      onChange={handleChange}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -281,8 +253,6 @@ function Setting() {
                       type="address"
                       id="address"
                       name="address"
-                      value={formData.email}
-                      onChange={handleChange}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -299,7 +269,6 @@ function Setting() {
                 </button>
                 <button
                   type="button"
-                  onClick={handleCancel}
                   className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 cursor-pointer"
                 >
                   Cancel
@@ -310,7 +279,7 @@ function Setting() {
         </div>
 
         {/* third form container */}
-        <div className="w-[90%] sm:w-full h-[30rem] sm:h-[63vh] bg-colors-digital-gray/50 px-5 rounded-lg mx-auto my-5 sm:mt-0">
+        <div className="w-[90%] sm:w-[100%] h-[31rem] sm:h-[63vh] bg-colors-digital-gray/50 px-5 rounded-lg mx-auto my-5 sm:mt-0">
           <header className="top-element text-white text-sm sm:text-base">
             <div className="flex flex-row items-center justify-between py-5">
               <h1 className="font-bold text-sm sm:text-lg">Change Password</h1>
@@ -323,7 +292,7 @@ function Setting() {
             className="body-element sm:px-5"
             style={{ flex: 1, height: "0px" }}
           >
-            <form onSubmit={handleSubmit} className="account-update-form ">
+            <form className="account-update-form ">
               {/* input container */}
               <div className="form-inputs flex border-b-1 border-colors-quantum-silver py-5 my-5">
                 <div className="w-full flex flex-wrap gap-4 justify-center sm:justify-start">
@@ -338,8 +307,6 @@ function Setting() {
                       type="password"
                       id="oldPassword"
                       name="oldPassword"
-                      value={formData.firstName}
-                      onChange={handleChange}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -354,8 +321,6 @@ function Setting() {
                       type="password"
                       id="newPassword"
                       name="newPassword"
-                      value={formData.firstName}
-                      onChange={handleChange}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -370,8 +335,6 @@ function Setting() {
                       type="password"
                       id="confirmPassword"
                       name="confirmPassword"
-                      value={formData.firstName}
-                      onChange={handleChange}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -388,7 +351,6 @@ function Setting() {
                 </button>
                 <button
                   type="button"
-                  onClick={handleCancel}
                   className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 cursor-pointer"
                 >
                   Cancel
