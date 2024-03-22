@@ -21,6 +21,7 @@ export const ContextProvider = ({ children }) => {
 
   // TODO:  userMembership should store user credential
   const [userMembership, setUserMembership] = useState({});
+  // console.log(userMembership);
 
   // POINT: FETCHING CONTRACT DATA
   const fetchData = async () => {
@@ -104,6 +105,8 @@ export const ContextProvider = ({ children }) => {
           "ether"
         ),
       };
+
+      // console.log(userMembershipData);
 
       setUserMembership(userMembershipData);
 

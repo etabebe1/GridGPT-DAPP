@@ -8,7 +8,10 @@ function Setting() {
   const PF = process.env.PUBLIC_URL;
   const { DAPP_NAME, userMembership } = useStateContext();
   const [user, setUser] = useState();
+  // TODO: old password will be fetched form db
+  const [oldPass, setOldPass] = useState("");
 
+  // console.log(oldPass);
   // Object.keys(userMembership).length > 0 && console.log(userMembership);
 
   const [newUser, setNewUser] = useState({
@@ -19,26 +22,36 @@ function Setting() {
     passwordConfirm: user?.passwordConfirm || "",
   });
 
-  useEffect(() => {
-    console.log(newUser);
-  }, [newUser]);
+  // console.log(newUser.password === )
+
+  // useEffect(() => {
+  //   console.log(newUser);
+  // }, [newUser]);
 
   useEffect(() => {
     const string = localStorage.getItem("userDetails");
     const parsedObject = JSON.parse(string);
     if (parsedObject?.name) {
       setUser(parsedObject);
+      return;
     }
   }, []);
 
   const handleFormFieldChange = (fieldName, evt) => {
+    evt.preventDefault();
     setNewUser({ ...newUser, [fieldName]: evt.target.value });
   };
 
-  const updateUser = () => {
+  const updateUser = (evt) => {
+    evt.preventDefault();
     const JSONObject = JSON.stringify(newUser);
     localStorage.setItem("userDetails", JSONObject);
     window.location.reload();
+  };
+
+  const updatePassword = (evt) => {
+    evt.preventDefault();
+    console.log(newUser.password === newUser.passwordConfirm);
   };
 
   return (
@@ -65,10 +78,10 @@ function Setting() {
             />
 
             <div className="profile-container mx-auto w-full -top-8 relative flex justify-center">
-              <div className="relative inline-block">
+              <div className="relative inline-block bg-colors-digital-gray border rounded-full">
                 <img
                   src={`${PF}/GridGPT-logo.png`}
-                  className="w-[5rem] h-[5rem] border rounded-full"
+                  className="w-[5rem] h-[5rem]"
                   alt=""
                 />
                 {/* Camera Icon Positioned on top right of the Profile Image */}
@@ -152,8 +165,8 @@ function Setting() {
               {/* button container */}
               <div className="flex gap-4 justify-between sm:justify-start px-4">
                 <button
-                  type="submit"
                   className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+                  onClick={() => updateUser()}
                 >
                   Update
                 </button>
@@ -197,20 +210,42 @@ function Setting() {
                       type="text"
                       id="membershipPlan"
                       name="membershipPlan"
+                      placeholder={
+                        userMembership.membershipId === 1
+                          ? "One Month"
+                          : userMembership.membershipId === 2
+                          ? "Three Months"
+                          : userMembership.membershipId === 3
+                          ? "Six Months"
+                          : userMembership.membershipId === 4
+                          ? "One Year"
+                          : "No membership"
+                      }
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
                   <div className="min-w-[15rem] sm:w-[48%]">
                     <label
-                      htmlFor="Membership Cost"
+                      htmlFor="membershipCost"
                       className="block text-sm font-medium text-white"
                     >
                       Membership Cost
                     </label>
                     <input
                       type="text"
-                      id="Membership Cost"
+                      id="membershipCost"
                       name="Membership Cost"
+                      placeholder={
+                        userMembership.membershipId === 1
+                          ? "1 MATIC"
+                          : userMembership.membershipId === 2
+                          ? "2.5 MATIC"
+                          : userMembership.membershipId === 3
+                          ? "3.5 MATIC"
+                          : userMembership.membershipId === 4
+                          ? "5 MATIC"
+                          : "6"
+                      }
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -225,6 +260,7 @@ function Setting() {
                       type="emailId"
                       id="emailId"
                       name="emailId"
+                      placeholder={userMembership.id}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -239,6 +275,7 @@ function Setting() {
                       type="membershipExpired"
                       id="membershipExpired"
                       name="membershipExpired"
+                      placeholder={userMembership.expiredDate || ""}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -253,6 +290,7 @@ function Setting() {
                       type="address"
                       id="address"
                       name="address"
+                      placeholder={userMembership.addressUser}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -307,6 +345,9 @@ function Setting() {
                       type="password"
                       id="oldPassword"
                       name="oldPassword"
+                      placeholder="Old password"
+                      required={true}
+                      onChange={(e) => setOldPass(e.target.value)}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -321,6 +362,9 @@ function Setting() {
                       type="password"
                       id="newPassword"
                       name="newPassword"
+                      placeholder="New password"
+                      required={true}
+                      onChange={(evt) => handleFormFieldChange("password", evt)}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -335,6 +379,11 @@ function Setting() {
                       type="password"
                       id="confirmPassword"
                       name="confirmPassword"
+                      placeholder="Confirm Password"
+                      required={true}
+                      onChange={(evt) =>
+                        handleFormFieldChange("passwordConfirm", evt)
+                      }
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -346,6 +395,7 @@ function Setting() {
                 <button
                   type="submit"
                   className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+                  onClick={(e) => updatePassword(e)} // to prevent
                 >
                   Update
                 </button>

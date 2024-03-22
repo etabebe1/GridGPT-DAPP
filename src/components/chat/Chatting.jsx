@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 
 function Chatting({ currentChat }) {
-  useEffect(() => {
-    currentChat && console.log(currentChat);
-  }, [currentChat]);
+  // useEffect(() => {
+  //   currentChat && console.log(currentChat);
+  // }, [currentChat]);
 
   return (
     <>

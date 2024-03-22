@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -13,6 +13,8 @@ import { PiSealCheckDuotone } from "react-icons/pi";
 function Subscription() {
   const navigate = useNavigate();
   const PF = process.env.PUBLIC_URL;
+
+  const [currency, setCurrency] = useState("US DOLLAR");
 
   return (
     <main
@@ -33,12 +35,13 @@ function Subscription() {
               {/*TODO: select options is not working */}
               <select
                 name=""
-                id="currency"
+                value={currency}
+                onChange={(evt) => setCurrency(evt.target.value)}
                 className="p-1 bg-colors-digital-gray-2/60"
               >
-                <option selected>US Dollar</option>
-                <option value="1">EURO</option>
-                <option value="2">YUAN</option>
+                <option value="US Dollar">US Dollar</option>
+                <option value="EURO">EURO</option>
+                <option value="YUAN">YUAN</option>
               </select>
             </div>
           </div>
