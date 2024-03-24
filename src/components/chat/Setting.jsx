@@ -6,13 +6,13 @@ import { CameraAltOutlined } from "@mui/icons-material";
 
 function Setting() {
   const PF = process.env.PUBLIC_URL;
-  const { DAPP_NAME, userMembership } = useStateContext();
+  const { DAPP_NAME, userMembershipData } = useStateContext();
   const [user, setUser] = useState();
   // TODO: old password will be fetched form db
   const [oldPass, setOldPass] = useState("");
 
   // console.log(oldPass);
-  // Object.keys(userMembership).length > 0 && console.log(userMembership);
+  // Object.keys(userMembershipData).length > 0 && console.log(userMembershipData);
 
   const [newUser, setNewUser] = useState({
     name: user?.name || "",
@@ -21,12 +21,6 @@ function Setting() {
     password: user?.password || "",
     passwordConfirm: user?.passwordConfirm || "",
   });
-
-  // console.log(newUser.password === )
-
-  // useEffect(() => {
-  //   console.log(newUser);
-  // }, [newUser]);
 
   useEffect(() => {
     const string = localStorage.getItem("userDetails");
@@ -47,11 +41,6 @@ function Setting() {
     const JSONObject = JSON.stringify(newUser);
     localStorage.setItem("userDetails", JSONObject);
     window.location.reload();
-  };
-
-  const updatePassword = (evt) => {
-    evt.preventDefault();
-    console.log(newUser.password === newUser.passwordConfirm);
   };
 
   return (
@@ -138,7 +127,7 @@ function Setting() {
                       type="text"
                       id="lastName"
                       name="lastName"
-                      placeholder={user?.lastName}
+                      placeholder={user?.surname}
                       onChange={(evt) => handleFormFieldChange("surname", evt)}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
@@ -166,7 +155,7 @@ function Setting() {
               <div className="flex gap-4 justify-between sm:justify-start px-4">
                 <button
                   className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
-                  onClick={() => updateUser()}
+                  onClick={(evt) => updateUser(evt)}
                 >
                   Update
                 </button>
@@ -211,13 +200,13 @@ function Setting() {
                       id="membershipPlan"
                       name="membershipPlan"
                       placeholder={
-                        userMembership.membershipId === 1
+                        userMembershipData.membershipId === 1
                           ? "One Month"
-                          : userMembership.membershipId === 2
+                          : userMembershipData.membershipId === 2
                           ? "Three Months"
-                          : userMembership.membershipId === 3
+                          : userMembershipData.membershipId === 3
                           ? "Six Months"
-                          : userMembership.membershipId === 4
+                          : userMembershipData.membershipId === 4
                           ? "One Year"
                           : "No membership"
                       }
@@ -236,13 +225,13 @@ function Setting() {
                       id="membershipCost"
                       name="Membership Cost"
                       placeholder={
-                        userMembership.membershipId === 1
+                        userMembershipData.membershipId === 1
                           ? "1 MATIC"
-                          : userMembership.membershipId === 2
+                          : userMembershipData.membershipId === 2
                           ? "2.5 MATIC"
-                          : userMembership.membershipId === 3
+                          : userMembershipData.membershipId === 3
                           ? "3.5 MATIC"
-                          : userMembership.membershipId === 4
+                          : userMembershipData.membershipId === 4
                           ? "5 MATIC"
                           : "6"
                       }
@@ -260,7 +249,7 @@ function Setting() {
                       type="emailId"
                       id="emailId"
                       name="emailId"
-                      placeholder={userMembership.id}
+                      placeholder={userMembershipData.id}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -275,7 +264,7 @@ function Setting() {
                       type="membershipExpired"
                       id="membershipExpired"
                       name="membershipExpired"
-                      placeholder={userMembership.expiredDate || ""}
+                      placeholder={userMembershipData.expiredDate || ""}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -290,7 +279,7 @@ function Setting() {
                       type="address"
                       id="address"
                       name="address"
-                      placeholder={userMembership.addressUser}
+                      placeholder={userMembershipData.addressUser}
                       className="mt-1 block w-[100%] px-3 py-2 bg-colors-quantum-silver/60 text-white/85 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
@@ -395,7 +384,7 @@ function Setting() {
                 <button
                   type="submit"
                   className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
-                  onClick={(e) => updatePassword(e)} // to prevent
+                  onClick={(e) => updateUser(e)}
                 >
                   Update
                 </button>

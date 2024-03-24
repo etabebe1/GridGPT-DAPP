@@ -20,7 +20,7 @@ export const ContextProvider = ({ children }) => {
   const [Free, setFree] = useState();
 
   // TODO:  userMembership should store user credential
-  const [userMembership, setUserMembership] = useState({});
+  const [userMembershipData, setUserMembershipData] = useState({});
   // console.log(userMembership);
 
   // POINT: FETCHING CONTRACT DATA
@@ -93,27 +93,25 @@ export const ContextProvider = ({ children }) => {
       // console.log(contractMembership);
 
       // POINT: GET USER MEMBERSHIP
-      let userMembershipData = await contract.getUserMembership(connectAccount);
+      let userMembership = await contract.getUserMembership(connectAccount);
 
-      userMembershipData = {
-        id: userMembershipData.id.toString(),
-        membershipId: userMembershipData.membershipId.toString(),
-        addressUser: userMembershipData.addressUser.toLowerCase(),
-        expireDate: userMembershipData.expireDate,
-        cost: ethers.utils.formatEther(
-          userMembershipData.cost.toString(),
-          "ether"
-        ),
+      userMembership = {
+        id: userMembership.id.toString(),
+        membershipId: userMembership.membershipId.toString(),
+        addressUser: userMembership.addressUser.toLowerCase(),
+        expireDate: userMembership.expireDate,
+        cost: ethers.utils.formatEther(userMembership.cost.toString(), "ether"),
       };
 
       // console.log(userMembershipData);
 
-      setUserMembership(userMembershipData);
+      setUserMembershipData(userMembership);
 
       // POINT: SAVING USER DETAILS TO LOCAL STORAGE
       const proMember = JSON.stringify(userMembership);
       localStorage.setItem("UserCredentials", proMember);
-      // console.log(userMembershipData);
+
+      // console.log(userMembership);
       // console.log(proMember);
     } catch (error) {
       console.log(error);
@@ -238,7 +236,7 @@ export const ContextProvider = ({ children }) => {
         Free,
         address,
         DAPP_NAME,
-        userMembership,
+        userMembershipData,
       }}
     >
       {children}
