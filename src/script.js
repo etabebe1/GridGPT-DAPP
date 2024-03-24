@@ -13,9 +13,10 @@ let loadInterval;
 function loader(element) {
   // Implementation needed for animation effect.
   element.textContent = "";
+
   loadInterval = setInterval(() => {
-    element.textContent += "";
-    if (element.textContent === "...") {
+    element.textContent += ".";
+    if (element.textContent === "....") {
       element.textContent = "";
     }
   }, 300);
@@ -80,7 +81,7 @@ export const handleSubmit = async (e) => {
   const response = await fetch("http://localhost:4000", {
     method: "POST",
     header: {
-      "Content-Type": "application;json",
+      "Content-Type": "application/json",
     },
 
     body: JSON.stringify({
@@ -143,7 +144,7 @@ export const handleSubmit = async (e) => {
 };
 
 // Correctly attaches event listeners to form for handling submit and Enter key press.
-form.addEventListener("submit", handleSubmit());
+form.addEventListener("submit", handleSubmit);
 form.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     handleSubmit();
