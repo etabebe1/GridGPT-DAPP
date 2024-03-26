@@ -10,9 +10,13 @@ function Form({ close, proMember, address, freeTrail }) {
   const date = new Date(today);
   const expiredDate = date.toLocaleDateString("en-US");
 
+  console.log(proMember?.address);
+  console.log(address);
+
   // console.log(proMember);
   // console.log(address);
   // console.log(freeTrail);
+  // console.log("nostro.pro.typeform.com");
 
   return (
     <form>
