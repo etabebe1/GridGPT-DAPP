@@ -1,0 +1,3 @@
+slider-component sm:hidden block w-[70vw] sm:w-full h-[100vh] sm:h-[64px] bg-colors-digital-gray-2/75 absolute ${
+              isOpen ? " right-0" : "-right-full"
+            } z-50 transition-all duration-300 pt-4

@@ -60,9 +60,9 @@ function Header() {
 
   return (
     <>
-      <header className="transition-right duration-300 z-50">
+      <header className="z-50">
         {/* navigation */}
-        <nav className="app-navigation">
+        <nav className="app-navigation w-screen">
           {/* slider nav component */}
           <div
             className={`slider-component sm:hidden block w-[70vw] sm:w-full h-[100vh] sm:h-[64px] bg-colors-digital-gray-2/75 absolute ${
@@ -81,7 +81,7 @@ function Header() {
 
           {/* mobile version header */}
           <div className="flex gap-4 shadow-lg backdrop-blur-2xl sm:shadow-none sm:backdrop-blur-none fixed w-full h-16 border-b-colors-digital-gray-2 bg-colors-digital-gray-2/75 border-b-1 z-30">
-            <div className="max-w-5xl w-full flex flex-row-reverse sm:flex-row justify-between px-2 items-center mx-auto">
+            <div className="max-w-7xl w-full flex flex-row-reverse sm:flex-row justify-between px-3 items-center mx-auto">
               <button
                 className=" text-white text-2xl bg-colors-deep-space-blue rounded-md p-1 sm:hidden hover:border border-colors-quantum-silver"
                 onClick={() => setIsOpen(!isOpen)}
@@ -97,24 +97,19 @@ function Header() {
 
               {/* nav link container */}
               <div className="link-container hidden sm:block">
-                <ul className="space-x-2">
+                <ul className="space-x-2 md:space-x-5 lg:space-x-16 flex justify-center items-center">
                   {menuList.map((link, index) => {
                     return (
                       <Link to={`${link.path}`} key={index}>
                         <button className="text-lg">
                           <span
-                            className={`flex flex-row items-center text-sm md:text-base ${
-                              location.pathname === link.path ? "text-lg" : ""
-                            }`}
+                            className={`flex flex-row items-center text-sm md:text-base hover:text-white/50 ${
+                              location.pathname === link.path
+                                ? "text-lg p-1 bg-colors-quantum-silver rounded"
+                                : ""
+                            } transition-all duration-300`}
                           >
-                            <LuDot
-                              className={
-                                location.pathname === link.path
-                                  ? "block"
-                                  : "hidden"
-                              }
-                            />
-                            {link.name}
+                            <p>{link.name}</p>
                           </span>
                         </button>
                       </Link>
@@ -133,7 +128,7 @@ function Header() {
 
                 <Link to={"#"}>
                   <button className="flex space-x-1 h-10 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-2 font-medium text-slate-400 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-                    Sign-up
+                    Connect
                   </button>
                 </Link>
               </div>

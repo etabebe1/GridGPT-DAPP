@@ -328,7 +328,7 @@ function ChatContainer() {
                   <>
                     <div className="container flex items-center justify-center flex-1 h-full">
                       <img
-                        src={"/assets/svg/character/1.svg"}
+                        src={"/assets/svg/no-chat.svg"}
                         alt=""
                         className="w-72 mx-auto"
                       />
@@ -473,7 +473,7 @@ function ChatContainer() {
                       <>
                         <div className="container flex items-center justify-center flex-1 h-full">
                           <img
-                            src={"/assets/svg/character/1.svg"}
+                            src={"/assets/svg/no-chat.svg"}
                             alt=""
                             className="w-72 mx-auto"
                           />
