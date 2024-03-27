@@ -60,7 +60,7 @@ body,
 
   .chat {
     font-family: "Open Sans", sans-serif;
-    background-image: url("../public//assets/images/home/home-bg.png");
+    background-image: url("../public/assets/images/home/home-bg.png");
     width: 100%;
     height: 100vh;
     background-size: cover;
@@ -70,9 +70,19 @@ body,
 
   .home {
     font-family: "Open Sans", sans-serif;
-    background-image: url("../public//assets/images/home/home-bg.png");
+    background-image: url("../public/assets/images/home/home-bg.png");
     width: 100%;
     height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero_title {
+    /* background-image: url("../public/assets/images/title-bg.jpg"); */
+    background-color: gray;
+    width: 10rem;
+    height: 10rem;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
