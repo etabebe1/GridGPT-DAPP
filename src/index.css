@@ -67,4 +67,14 @@ body,
     background-position: center;
     background-repeat: no-repeat;
   }
+
+  .home {
+    font-family: "Open Sans", sans-serif;
+    background-image: url("../public//assets/images/home/home-bg.png");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
