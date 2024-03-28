@@ -78,6 +78,7 @@ body,
     background-repeat: no-repeat;
   }
 
+  /* hero section start */
   .hero_title {
     /* background-image: url("../public/assets/images/title-bg.jpg"); */
     background-color: gray;
@@ -87,4 +88,16 @@ body,
     background-position: center;
     background-repeat: no-repeat;
   }
+
+  .hand-container {
+    perspective: 1130px;
+  }
+
+  .laptop {
+    transform-style: preserve-3d;
+    vertical-align: middle;
+    transform: rotateX(30deg);
+    will-change: transform;
+  }
+  /* hero section end */
 }
