@@ -15,7 +15,7 @@
   --deep-space-blue: #031d44;
   --cybernetic-blue: #00d1ff;
 
-  /* Secondary colors */
+  /* Secondary color:roots */
   --quantum-silver: #858585;
   --digital-gray: #2e2e2e;
   --digital-gray-2: #171717;
@@ -118,5 +118,6 @@ body,
     position: relative;
     overflow: hidden;
   }
+
   /* service section end */
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRightAltRounded } from "@mui/icons-material";
 
@@ -70,6 +70,11 @@ function Service() {
     },
   ];
 
+  const [isHovered, setIsHovered] = useState({
+    hovered: false,
+    indexedValue: "",
+  });
+
   //  h-[1050px] sm:h-[1100px] md:h-[1200px]
   return (
     <div className="service w-[100%] h-[1300px] sm:h-[800px] md:h-[600px] py-10">
@@ -77,11 +82,36 @@ function Service() {
         {/* service features */}
         <div className="features-card grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-[70%] md:h-full">
           {serviceFeatures.map((feature, index) => {
+            // card bg-colors-digital-gray-2 bg-gradient-to-br h-full p-2 rounded-md flex flex-col gap-3 group ${
+            //   isHovered.hovered &&
+            //   isHovered.indexedValue === index &&
+            //   "from-white/5 to-black/90"
+            // } transition duration-500
+
             return (
-              <div className="card bg-colors-digital-gray-2 w-full h-full p-2 rounded-md flex flex-col gap-3 ">
-                <i className="icon ">
+              <div
+                className={`
+                card bg-colors-digital-gray-2 h-full p-2 rounded-md flex flex-col gap-3 group from-white/5 via-white/0 to-black/90 hover:bg-gradient-to-br transition-colors duration-500
+                `}
+                key={index}
+                onMouseEnter={() =>
+                  setIsHovered({
+                    hovered: !isHovered.hovered,
+                    indexedValue: index,
+                  })
+                }
+                onMouseLeave={() =>
+                  setIsHovered({ hovered: false, indexedValue: "" })
+                }
+              >
+                <i className="icon bg-colors-digital-gray p-1 rounded w-14 h-14 items-center flex">
                   <img
-                    src={`/assets/svg/service/${feature.icons[0].icon}`}
+                    src={`/assets/svg/service/${
+                      isHovered.hovered && isHovered.indexedValue === index
+                        ? feature.icons[1].icon
+                        : feature.icons[0].icon
+                    }`}
+                    className=" group-hover:rotate-45 transition-all duration-500 mx-auto"
                     alt=""
                   />
                 </i>
@@ -123,7 +153,7 @@ function Service() {
           <div className="view-button">
             <Link to={"#"}>
               <div className="flex flex-row items-center gap-2 group font-semibold text-emerald-300">
-                <div className="bg-colors-digital-gray p-1 border  rounded-full group-hover:rotate-45 transition-all duration-300">
+                <div className="bg-colors-digital-gray p-1 border  rounded-full group-hover:rotate-90 transition-all duration-300">
                   <ArrowRightAltRounded />
                 </div>
                 <span>View all</span>

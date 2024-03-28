@@ -1,7 +1,7 @@
 import React from "react";
 
 // importing icons
-import { Height, VideocamTwoTone } from "@mui/icons-material";
+import { VideocamTwoTone } from "@mui/icons-material";
 import { LuDot } from "react-icons/lu";
 import { Star } from "@mui/icons-material";
 
@@ -109,9 +109,12 @@ function HeroSection() {
               {/* rating-star */}
               <div className="star-rating-container flex flex-col justify-center items-center text-center">
                 <div className="star-container">
-                  {[1, 2, 3, 4, 5].map((star, index) => {
+                  {[1, 2, 3, 4, 5].map((star) => {
                     return (
-                      <Star className="text-colors-innovation-gold mt-5" />
+                      <Star
+                        className="text-colors-innovation-gold mt-5"
+                        key={star}
+                      />
                     );
                   })}
                 </div>
