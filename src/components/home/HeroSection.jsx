@@ -7,7 +7,7 @@ import { Star } from "@mui/icons-material";
 
 function HeroSection() {
   return (
-    <div className="hero flex justify-center overflow-x-hidden overflow-y-hidden h-[1050px] sm:h-[1100px] md:h-[1200px]">
+    <div className="hero flex justify-center overflow-x-hidden overflow-y-hidden h-[1050px] sm:h-[1100px] md:h-[1200px] lg:h-[200vh]">
       <section className="hero-container max-w-4xl w-[80vw] h-full flex justify-center items-center">
         <div className="home-content w-full h-full relative">
           <div className="bg-effect z-0">
@@ -20,7 +20,10 @@ function HeroSection() {
           <div className="content-layer absolute top-10 z-20 flex flex-col justify-center w-full px-2 gap-10 ">
             {/* text */}
             <div className="text-layer flex flex-col justify-center items-center text-center">
-              <h1 className="flex flex-wrap justify-center items-center text-4xl font-semibold mb-10">
+              <h1
+                className="flex flex-wrap justify-center items-center text-4xl font-semibold mb-10"
+                style={{ textShadow: "2px 2px 10px rgba(0, 0, 0, 0.5)" }}
+              >
                 <span>USE MEGABOT TO</span>
                 <div className="relative">
                   <img
@@ -88,7 +91,10 @@ function HeroSection() {
             {/* rating */}
             <div className="rating-container max-w-2xl sm:w-2/3  md:3/4 lg:w-full mx-auto flex flex-col justify-center items-center mt-5 sm:mt-10">
               {/* features */}
-              <div className="ai-features flex flex-wrap text-center items-center justify-center border-b-2 border-colors-ai-blue pb-5">
+              <div
+                className="ai-features flex flex-wrap text-center items-center justify-center border-b-2 border-colors-ai-blue pb-5"
+                style={{ textShadow: "2px 2px 7px rgba(0, 0, 0, 0.2)" }}
+              >
                 <p className="uppercase font-semibold flex flex-row items-center shadow-2xl">
                   <LuDot className="text-2xl" /> <span>Ask Anything</span>
                 </p>

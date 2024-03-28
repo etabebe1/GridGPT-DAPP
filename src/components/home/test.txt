@@ -1,0 +1,16 @@
+
+
+        {/* descriptions */}
+        <div className="description-content w-full ">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+          perferendis atque eos ab recusandae, pariatur incidunt. Quos quae
+          delectus eum nam tempora? Atque eius vero magnam, illo molestias
+          cumque ipsa ipsam quo. Quidem similique atque placeat magnam rerum
+          consequatur natus deserunt repellat error aspernatur explicabo cumque
+          incidunt esse laboriosam, in consequuntur maiores possimus a. Maxime
+          autem earum recusandae ullam natus qui libero officia quos sit quia
+          totam minus saepe deserunt eius facilis fuga, iure, in nobis quidem
+          quas! Itaque aspernatur velit provident temporibus eum perspiciatis et
+          eveniet, hic ipsam non recusandae explicabo, consequatur nihil
+          repudiandae, maiores reiciendis perferendis. Pariatur, neque.
+        </div>

@@ -100,4 +100,23 @@ body,
     will-change: transform;
   }
   /* hero section end */
+
+  /* service section start */
+
+  .service {
+    background-image: url("../public/assets/images/service-bg.png");
+
+    height: 100%;
+    background: linear-gradient(
+      180.02deg,
+      rgba(rgba(245, 245, 245), 0.05) 0.1%,
+      rgba(rgb(115, 115, 115), 0) 90.86%
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+  }
+  /* service section end */
 }

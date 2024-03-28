@@ -29,11 +29,13 @@ function Home() {
         style={{ height: "calc(100vh - 64px)" }}
       >
         <HeroSection></HeroSection>
+        <Service></Service>
         <About></About>
+        <AboutRight></AboutRight>
+        <AboutThird></AboutThird>
         <Features></Features>
         <Info></Info>
         <Price></Price>
-        <Service></Service>
         <Tap></Tap>
         <Testimonial></Testimonial>
       </div>
