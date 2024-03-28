@@ -2,16 +2,18 @@ import React from "react";
 
 // importing icons
 import { VideocamTwoTone } from "@mui/icons-material";
+import { LuDot } from "react-icons/lu";
+import { Star } from "@mui/icons-material";
 
 function HeroSection() {
   return (
     <div
-      className="hero flex justify-center"
+      className="hero flex justify-center overflow-x-hidden"
       style={{
         height: "calc(200vh - 64px)",
       }}
     >
-      <section className="hero-container max-w-4xl w-[80vw] h-full flex justify-center">
+      <section className="hero-container max-w-4xl w-[80vw] h-full flex justify-center items-center">
         <div className="home-content w-full h-full relative">
           <div className="bg-effect z-0">
             <img
@@ -54,7 +56,7 @@ function HeroSection() {
             </div>
 
             {/* image */}
-            <div className="laptop-layer">
+            <div className="laptop-layer max-w-4xl">
               <div className="hand-container relative">
                 <img
                   src="/assets/images/home/laptop1.png"
@@ -87,7 +89,37 @@ function HeroSection() {
                 />
               </div>
             </div>
-            <div className="bottom"></div>
+
+            {/* rating */}
+            <div className="rating-container max-w-2xl sm:w-2/3  md:3/4 lg:w-full mx-auto flex flex-col justify-center items-center mt-5 sm:mt-10">
+              {/* features */}
+              <div className="ai-features flex flex-wrap text-center items-center justify-center border-b-2 border-colors-ai-blue pb-5">
+                <p className="uppercase font-semibold flex flex-row items-center shadow-2xl">
+                  <LuDot className="text-2xl" /> <span>Ask Anything</span>
+                </p>
+                <p className="uppercase font-semibold flex flex-row items-center shadow-2xl">
+                  <LuDot className="text-2xl" /> <span>Generate Anything</span>
+                </p>
+                <p className="uppercase font-semibold flex flex-row items-center shadow-2xl">
+                  <LuDot className="text-2xl" /> <span>Translate Anything</span>
+                </p>
+              </div>
+
+              {/* rating-star */}
+              <div className="star-rating-container flex flex-col justify-center items-center text-center">
+                <div className="star-container">
+                  {[1, 2, 3, 4, 5].map((star, index) => {
+                    return (
+                      <Star className="text-colors-innovation-gold mt-5" />
+                    );
+                  })}
+                </div>
+                <span className="rating-text text-sm mt-2">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi
+                  dolorum cupiditate,
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
