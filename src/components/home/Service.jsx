@@ -56,9 +56,8 @@ function Service() {
             return (
               <div
                 className={`
-                card bg-colors-digital-gray-2 h-full p-2 rounded-md flex flex-col gap-3 group from-white/5 via-white/0 to-black/90 hover:bg-gradient-to-br transition-colors duration-500
-                `}
-                key={index}
+                card h-full p-2 rounded-md flex flex-col gap-3 group bg-gradient-to-bl from-black to-black/50 to hover:from-black/50 hover:to-black transition-all duration-500`}
+                key={index + 1}
               >
                 <i className="icon bg-colors-digital-gray p-1 rounded w-14 h-14 items-center flex relative">
                   <img
