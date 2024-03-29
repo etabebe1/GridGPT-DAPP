@@ -21,7 +21,7 @@ function AboutRight() {
       className="about overflow-x-hidden overflow-y-hidden h-[974px] sm:h-[740px] md:h-[690px] py-3 sm:py-10"
       style={{ width: "100vw" }}
     >
-      <div className="about-container mr-3 sm:mr-10 h-full bg-gradient-to-bl from-black/50 via-black/20 to-white/5 bg-colors-quantum-silver/25 flex items-center">
+      <div className="about-container mr-3 sm:mr-10 h-full bg-gradient-to-bl from-black/60 via-black/20 to-white/5 bg-colors-quantum-silver/25 flex items-center">
         <div className="content max-w-[80rem] w-full flex flex-col sm:flex-row gap-5 sm:gap-10 px-3 sm:px-14 items-center justify-center">
           <div className="img-container sm:w-[50%] pr-2">
             <img src="/assets/svg/character/2.svg" alt="" className="" />
