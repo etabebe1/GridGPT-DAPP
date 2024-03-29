@@ -20,7 +20,7 @@ function About() {
       className="about overflow-x-hidden overflow-y-hidden h-[950px] sm:h-[700px] md:h-[650px]"
       style={{ width: "100vw" }}
     >
-      <div className="about-container ml-3 sm:ml-10 w-full h-full bg-gradient-to-br from-white/5 via-black/20 to-black/60 bg-colors-quantum-silver/25 flex items-center">
+      <div className="about-container ml-3 sm:ml-10 w-full h-full bg-gradient-to-br from-white/5 via-black/20 to-black/60 bg-colors-quantum-silver/25 flex items-center rounded-l-lg shadow-sm sm:drop-shadow-lg border shadow-white/50 backdrop-blur-lg">
         <div className="content max-w-[80rem] w-full flex flex-col sm:flex-row-reverse gap-5 sm:gap-10 px-3 sm:px-14 items-center justify-center">
           <div className="img-container sm:w-[50%] pr-2">
             <img src="/assets/svg/character/1.svg" alt="" className="" />

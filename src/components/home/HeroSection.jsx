@@ -7,7 +7,7 @@ import { Star } from "@mui/icons-material";
 
 function HeroSection() {
   return (
-    <div className="hero flex justify-center overflow-x-hidden overflow-y-hidden h-[1050px] sm:h-[1100px] md:h-[1200px] lg:h-[200vh]">
+    <div className="hero flex justify-center overflow-x-hidden overflow-y-hidden h-[1050px] sm:h-[1100px] md:h-[1250px]">
       <section className="hero-container max-w-4xl w-[80vw] h-full flex justify-center items-center">
         <div className="home-content w-full h-full relative">
           <div className="bg-effect z-0">
