@@ -9,71 +9,42 @@ function Service() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti excepturi iure!",
       image: "service-title.svg",
-      icons: [
-        {
-          icon: "copy.svg",
-          style: "outline-icon",
-        },
-        {
-          icon: "copy-bold.svg",
-          style: "bold-icon",
-        },
-      ],
+      icons: {
+        icon: "copy.svg",
+        iconBold: "copy-bold.svg",
+      },
     },
     {
       title: "Digital Marketing",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti excepturi iure!",
       image: "service-title.svg",
-      icons: [
-        {
-          icon: "graph.svg",
-          style: "outline-icon",
-        },
-        {
-          icon: "graph-bold.svg",
-          style: "bold-icon",
-        },
-      ],
+      icons: {
+        icon: "graph.svg",
+        iconBold: "graph-bold.svg",
+      },
     },
     {
       title: "SEO Specialist",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti excepturi iure!",
       image: "service-title.svg",
-      icons: [
-        {
-          icon: "search.svg",
-          style: "outline-icon",
-        },
-        {
-          icon: "search-bold.svg",
-          style: "bold-icon",
-        },
-      ],
+      icons: {
+        icon: "search.svg",
+        iconBold: "search-bold.svg",
+      },
     },
     {
       title: "Content Maker",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui deleniti excepturi iure!",
       image: "service-title.svg",
-      icons: [
-        {
-          icon: "text.svg",
-          style: "outline-icon",
-        },
-        {
-          icon: "text-bold.svg",
-          style: "bold-icon",
-        },
-      ],
+      icons: {
+        icon: "text.svg",
+        iconBold: "text-bold.svg",
+      },
     },
   ];
-
-  const [isHovered, setIsHovered] = useState({
-    hovered: false,
-    indexedValue: "",
-  });
 
   //  h-[1050px] sm:h-[1100px] md:h-[1200px]
   return (
@@ -82,36 +53,22 @@ function Service() {
         {/* service features */}
         <div className="features-card grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-[70%] md:h-full">
           {serviceFeatures.map((feature, index) => {
-            // card bg-colors-digital-gray-2 bg-gradient-to-br h-full p-2 rounded-md flex flex-col gap-3 group ${
-            //   isHovered.hovered &&
-            //   isHovered.indexedValue === index &&
-            //   "from-white/5 to-black/90"
-            // } transition duration-500
-
             return (
               <div
                 className={`
                 card bg-colors-digital-gray-2 h-full p-2 rounded-md flex flex-col gap-3 group from-white/5 via-white/0 to-black/90 hover:bg-gradient-to-br transition-colors duration-500
                 `}
                 key={index}
-                onMouseEnter={() =>
-                  setIsHovered({
-                    hovered: !isHovered.hovered,
-                    indexedValue: index,
-                  })
-                }
-                onMouseLeave={() =>
-                  setIsHovered({ hovered: false, indexedValue: "" })
-                }
               >
-                <i className="icon bg-colors-digital-gray p-1 rounded w-14 h-14 items-center flex">
+                <i className="icon bg-colors-digital-gray p-1 rounded w-14 h-14 items-center flex relative">
                   <img
-                    src={`/assets/svg/service/${
-                      isHovered.hovered && isHovered.indexedValue === index
-                        ? feature.icons[1].icon
-                        : feature.icons[0].icon
-                    }`}
-                    className=" group-hover:rotate-90 transition-all duration-500 mx-auto"
+                    src={`/assets/svg/service/${feature.icons.icon}`}
+                    className="group-hover:rotate-90 group-hover:opacity-0 transition-all duration-500"
+                    alt=""
+                  />
+                  <img
+                    src={`/assets/svg/service/${feature.icons.iconBold}`}
+                    className="absolute opacity-0 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-500"
                     alt=""
                   />
                 </i>
