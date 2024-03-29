@@ -120,4 +120,15 @@ body,
   }
 
   /* service section end */
+
+  /* about section start */
+  .about {
+    background-image: url("../public/assets/images/about-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 253, 253, 1);
+  }
+
+  /* about section end */
 }

@@ -111,7 +111,7 @@ function Service() {
                         ? feature.icons[1].icon
                         : feature.icons[0].icon
                     }`}
-                    className=" group-hover:rotate-45 transition-all duration-500 mx-auto"
+                    className=" group-hover:rotate-90 transition-all duration-500 mx-auto"
                     alt=""
                   />
                 </i>
@@ -152,8 +152,8 @@ function Service() {
 
           <div className="view-button">
             <Link to={"#"}>
-              <div className="flex flex-row items-center gap-2 group font-semibold text-emerald-300">
-                <div className="bg-colors-digital-gray p-1 border  rounded-full group-hover:rotate-90 transition-all duration-300">
+              <div className="flex flex-row items-center gap-2 font-semibold text-emerald-300">
+                <div className="bg-colors-digital-gray p-1 border  rounded-full hover:rotate-45 transition-all duration-300">
                   <ArrowRightAltRounded />
                 </div>
                 <span>View all</span>

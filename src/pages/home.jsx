@@ -28,16 +28,17 @@ function Home() {
         className="component-container overflow-y-auto relative top-[64px]"
         style={{ height: "calc(100vh - 64px)" }}
       >
-        <HeroSection></HeroSection>
-        <Service></Service>
-        <About></About>
-        <AboutRight></AboutRight>
-        <AboutThird></AboutThird>
-        <Features></Features>
-        <Info></Info>
-        <Price></Price>
-        <Tap></Tap>
-        <Testimonial></Testimonial>
+        <HeroSection />
+        <Service />
+        <About />
+        <AboutRight />
+        <AboutThird />
+        <Features />
+        <Info />
+        <Price />
+        <Faq />
+        <Tap />
+        <Testimonial />
       </div>
     </div>
   );
