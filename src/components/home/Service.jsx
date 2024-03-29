@@ -62,12 +62,12 @@ function Service() {
                 <i className="icon bg-colors-digital-gray p-1 rounded w-14 h-14 items-center flex relative">
                   <img
                     src={`/assets/svg/service/${feature.icons.icon}`}
-                    className="group-hover:rotate-90 group-hover:opacity-0 transition-all duration-500"
+                    className="group-hover:rotate-180 group-hover:opacity-0 transition-all duration-500"
                     alt=""
                   />
                   <img
                     src={`/assets/svg/service/${feature.icons.iconBold}`}
-                    className="absolute opacity-0 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-500"
+                    className="absolute opacity-0 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500"
                     alt=""
                   />
                 </i>
