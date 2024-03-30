@@ -11,7 +11,7 @@ const AccordionItem = ({ title, description }) => {
   return (
     <article
       onClick={toggleAccordion}
-      className="container flex flex-col py-5 pb-0 my-2 rounded-sm bg-gradient-to-r from-colors-quantum-silver/25 via-colors-quantum-silver/60 to-colors-quantum-silver/35 transition duration-300  text-white/65 cursor-pointer"
+      className="accordion-container flex flex-col py-5 pb-0 my-2 rounded-sm bg-gradient-to-r from-colors-quantum-silver/25 via-colors-quantum-silver/60 to-colors-quantum-silver/35 transition duration-300  text-white/65 cursor-pointer"
       style={{
         backdropFilter: "blur(10px)",
         boxShadow:
@@ -77,20 +77,25 @@ function Help() {
   ];
 
   return (
-    <main className="pt-0 flex flex-col">
+    <main className="pt-0 flex flex-col items-center justify-center">
       <div
-        aria-label="Subscription Container"
-        role="complementary"
-        className="subscription-container px-5 rounded-t-md flex flex-col overflow-auto"
-        style={{ height: "100%" }}
+        className="overflow-y-auto w-full"
+        style={{ height: "calc(100vh - 88px)" }}
       >
-        {accordionItems.map((item, index) => (
-          <AccordionItem
-            key={index}
-            title={item.title}
-            description={item.description}
-          />
-        ))}
+        <div
+          aria-label="Help Container"
+          role="complementary"
+          className="help-container px-5 rounded-t-md flex flex-col overflow-auto w-full"
+          style={{ height: "100%" }}
+        >
+          {accordionItems.map((item, index) => (
+            <AccordionItem
+              key={index}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
+        </div>
       </div>
     </main>
   );

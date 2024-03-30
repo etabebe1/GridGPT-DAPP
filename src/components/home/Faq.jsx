@@ -11,7 +11,7 @@ const AccordionItem = ({ title, description }) => {
   return (
     <article
       onClick={toggleAccordion}
-      className="container flex flex-col py-5 pb-0 my-2 rounded-sm bg-gradient-to-r from-colors-quantum-silver/25 via-colors-quantum-silver/60 to-colors-quantum-silver/35 transition duration-300  text-white/65 cursor-pointer"
+      className="accordion-container flex flex-col py-5 pb-0 my-2 rounded-sm bg-gradient-to-r from-colors-quantum-silver/25 via-colors-quantum-silver/60 to-colors-quantum-silver/35 transition duration-300  text-white/65 cursor-pointer"
       style={{
         backdropFilter: "blur(10px)",
         boxShadow:
@@ -20,7 +20,7 @@ const AccordionItem = ({ title, description }) => {
       }}
     >
       <h3
-        className={`text-sm sm:text-base font-semibold text-center sm:text-left pb-2 sm:pb-0 px-3 transition-all duration-300 ${
+        className={`text-sm sm:text-base font-semibold text-center sm:text-left pb-2 sm:pb-0 px-3 transition-all duration-300 w-full ${
           isOpen && "border-b-1"
         }`}
       >
@@ -77,14 +77,14 @@ function Faq() {
   ];
 
   return (
-    <main className="pt-0 flex flex-col">
-      <h2 className="font-bold text-3xl text-center">
+    <main className="pt-0 flex flex-col justify-center gap-5 sm:gap-7">
+      <h2 className="font-bold text-xl sm:text-3xl text-center">
         Lorem ipsum dolor sit amet consectetur.
       </h2>
       <div
         aria-label="Subscription Container"
         role="complementary"
-        className="subscription-container px-5 rounded-t-md flex flex-col overflow-auto"
+        className="subscription-container px-5 flex flex-col justify-center w-full text-center"
         style={{ height: "100%" }}
       >
         {accordionItems.map((item, index) => (
