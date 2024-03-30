@@ -34,8 +34,8 @@ function Home() {
         <AboutRight />
         <AboutThird />
         <Features />
-        <Info />
         <Price />
+        <Info />
         <Faq />
         <Tap />
         <Testimonial />

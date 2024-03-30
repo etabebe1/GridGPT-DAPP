@@ -124,33 +124,56 @@ body,
 
   /* features section start */
 
-  /* .features {
-    background-image: url("../public/assets/images/feature-bg.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  } */
-
-  /*  .feature-icon {
-    width: calc(30px + (40 - 30) * ((100vw - 320px) / (1920 - 320)));
-    height: calc(30px + (40 - 30) * ((100vw - 320px) / (1920 - 320)));
-    position: relative;
-    transition: all 0.5s ease;
-    img {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-    .outline-icon {
-        transition: all 0.5s ease;
-    }
-    .bold-icon {
-        opacity: 0;
-        visibility: hidden;
-        transform: translate(-50%, -50%) scaleX(-1);
-        transition: all 0.5s ease;
-    }
-} */
   /* features section end */
+
+  /* pricing section start */
+  /* h-[1890px] sm:h-[1800px]   */
+  .price {
+    height: 1890px;
+  }
+
+  @media (min-width: 384px) {
+    .price {
+      height: 1800px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .price {
+      height: 1800px;
+    }
+  }
+  @media (min-width: 740px) {
+    .price {
+      height: 1820px;
+    }
+  }
+
+  @media (min-width: 835px) {
+    .price {
+      height: 1300px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .price {
+      height: 1270px;
+    }
+  }
+
+  @media (min-width: 1170px) {
+    .price {
+      height: 770px;
+    }
+  }
+
+  .pricing-mid {
+    clip-path: polygon(8.9% 0%, 91.1% 0, 100% 100%, 0% 100%);
+  }
+
+  .pricing-content {
+    clip-path: polygon(100% 0, 100% 100%, 49% 92%, 0 100%, 0 0);
+  }
+
+  /* pricing section end */
 }
