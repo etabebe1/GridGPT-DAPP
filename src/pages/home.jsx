@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // Internal Import
 import { useStateContext } from "../context/context";
@@ -35,8 +35,8 @@ function Home() {
         <AboutThird />
         <Features />
         <Price />
-        <Info />
         <Faq />
+        <Info />
         <Tap />
         <Testimonial />
       </div>
