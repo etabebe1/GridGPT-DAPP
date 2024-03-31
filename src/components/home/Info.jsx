@@ -29,7 +29,7 @@ function Info() {
       <div className="info w-[90vw] my-10 mx-auto border rounded-md py-4 relative">
         {/* info content */}
         <div className="info-container h-full flex flex-col justify-center gap-10">
-          <div className="header relative my-3">
+          <div className="header relative my-3 z-50">
             <h1 className="uppercase text-xl sm:text-3xl text-center font-semibold">
               <span className="text-emerald-400">read to </span>move ahead?
             </h1>
@@ -40,7 +40,7 @@ function Info() {
             />
           </div>
 
-          <div className="info-desc px-3">
+          <div className="info-desc px-3 z-50">
             <p className="text-sm text-center text-colors-cloud-compute-white/75 max-w-xl mx-auto">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Perferendis earum, illo aut labore recusandae vel architecto neque
@@ -50,7 +50,7 @@ function Info() {
             </p>
           </div>
 
-          <div className="info-list flex flex-wrap items-center justify-center gap-4">
+          <div className="info-list flex flex-wrap items-center justify-center gap-4 z-50">
             {infoList.map((list, index) => {
               return (
                 <div
@@ -68,7 +68,7 @@ function Info() {
             })}
           </div>
 
-          <div className="contact-btn flex flex-row items-center justify-center gap-2">
+          <div className="contact-btn flex flex-row items-center mx-auto group cursor-pointer gap-2 z-50">
             <Link
               to={"#"}
               className="group shadow-colors-quantum-silver shadow-md rounded-full"

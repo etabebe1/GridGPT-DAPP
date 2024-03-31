@@ -9,13 +9,12 @@ import {
   AboutThird,
   Faq,
   Features,
+  Footer,
   Header,
   HeroSection,
   Info,
   Price,
   Service,
-  Tap,
-  Testimonial,
 } from "../components/home/z-index";
 
 function Home() {
@@ -37,8 +36,7 @@ function Home() {
         <Price />
         <Faq />
         <Info />
-        <Tap />
-        <Testimonial />
+        <Footer />
       </div>
     </div>
   );
