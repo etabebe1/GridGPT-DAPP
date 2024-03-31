@@ -21,7 +21,7 @@ const AccordionItem = ({ title, description }) => {
     >
       <h3
         className={`text-sm sm:text-base font-semibold text-center sm:text-left pb-2 sm:pb-0 px-3 transition-all duration-300 w-full ${
-          isOpen && "border-b-1"
+          isOpen && "border-b-1 text-emerald-400"
         }`}
       >
         {title}
@@ -32,7 +32,7 @@ const AccordionItem = ({ title, description }) => {
         }`}
         style={{ overflow: "hidden" }}
       >
-        <p className="text-center w-full text-sm sm:text-base px-3">
+        <p className="text-center w-full text-sm px-3 py-3">
           {isOpen ? description : ""}
         </p>
       </div>

@@ -176,4 +176,67 @@ body,
   }
 
   /* pricing section end */
+
+  /* info section start */
+  .info {
+    height: 540px;
+    background-image: url("../public/assets/images/info-bg.jpg");
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .info .title-effect {
+    right: 64px;
+  }
+
+  @media (min-width: 466px) {
+    .info {
+      height: 450px;
+    }
+
+    .info .title-effect {
+      right: 5rem;
+    }
+  }
+
+  @media (min-width: 500px) {
+    .info {
+      height: 400px;
+    }
+
+    .info .title-effect {
+      right: 8rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .info {
+      background-position: center;
+    }
+
+    .info .title-effect {
+      width: 10rem;
+    }
+  }
+
+  @media (min-width: 770px) {
+    .info .title-effect {
+      right: 13rem;
+    }
+  }
+
+  @media (min-width: 930px) {
+    .info {
+      height: 350px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .info .title-effect {
+      right: 30vw;
+    }
+  }
+
+  /* info section end */
 }
