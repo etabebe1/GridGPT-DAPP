@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // Importing React Icons
 import { RiMenu4Line } from "react-icons/ri";
 import { ArrowForward } from "@mui/icons-material";
-import { LuDot } from "react-icons/lu";
+import { list } from "@material-tailwind/react";
 
 //  <Link to="/chat/chatting">Chat</Link>
 //  <Link to="/service">Service</Link>
@@ -77,6 +71,23 @@ function Header() {
                 <ArrowForward />
               </span>
             </button>
+
+            <ul className="link-container w-full h-full p-3 flex flex-col gap-3">
+              {menuList.map((list, index) => {
+                return (
+                  <Link to={list.path} key={index + 1}>
+                    <li
+                      className={`${
+                        list.style === "Active" &&
+                        "bg-colors-quantum-silver/50 rounded-sm"
+                      } p-1`}
+                    >
+                      {list.name}
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
           </div>
 
           {/* mobile version header */}
