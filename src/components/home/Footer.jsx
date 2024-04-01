@@ -6,15 +6,44 @@ import { FaLinkedinIn, FaFacebookF, FaInstagram } from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
 import { ApiSharp } from "@mui/icons-material";
 
-const AccordionItem = ({ title, description }) => {
+const AccordionItem = ({ link }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-   
+    <li className="cursor-pointer relative">
+      <div
+        className="flex flex-row justify-between items-center px-1 bg-gradient-to-r from-colors-quantum-silver/20 via-colors-quantum-silver/45 to-colors-quantum-silver/20 border-b border-colors-quantum-silver/50 py-1"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="flex flex-row items-center gap-1">
+          <i>
+            <img src={`/assets/svg/${link.icon}`} alt="" />
+          </i>
+          <h3 className="text-lg">{link.title}</h3>
+        </div>
+        <i>
+          <ApiSharp />
+        </i>
+      </div>
+
+      <ul
+        className={`bg-gradient-to-r from-colors-quantum-silver/15 via-colors-quantum-silver/25 to-colors-quantum-silver/15 px-2 transition-max-height duration-500 ${
+          isOpen ? "max-h-96 py-2" : "max-h-0"
+        }`}
+        style={{ overflow: "hidden" }}
+      >
+        {link.subLinks.map((link, index) => {
+          // console.log(link.subLink);
+          return (
+            <div key={index + 1}>
+              <Link to={`${link.subLink}`}>
+                <li>{link.name}</li>
+              </Link>
+            </div>
+          );
+        })}
+      </ul>
+    </li>
   );
 };
 
@@ -75,9 +104,6 @@ function Footer() {
     },
   ];
 
-
-
-
   return (
     <section className="">
       <div className="footer-container px-2 sm:px-10 ">
@@ -125,43 +151,11 @@ function Footer() {
           </div>
 
           {/* second-content */}
-          <div className="second md:w-[50%]">
+          <div className="second md:w-[50%] flex items-center">
             {
-              <ul className="list-container flex flex-col gap-2">
+              <ul className="list-container flex flex-col gap-2 w-full">
                 {topLinks.map((link, index) => {
-                  return (
-                    <li className="cursor-pointer relative" key={index + 1}>
-                      <div
-                        className="flex flex-row justify-between items-center px-1 bg-gradient-to-r from-colors-quantum-silver/20 via-colors-quantum-silver/45 to-colors-quantum-silver/20 border-b border-colors-quantum-silver/50 py-1"
-                        onClick={() => setIsOpen(!isOpen)}
-                      >
-                        <div className="flex flex-row items-center gap-1">
-                          <i>
-                            <img src={`/assets/svg/${link.icon}`} alt="" />
-                          </i>
-                          <h3 className="text-lg">{link.title}</h3>
-                        </div>
-                        <i>
-                          <ApiSharp />
-                        </i>
-                      </div>
-
-                      <ul
-                        className={`bg-gradient-to-r from-colors-quantum-silver/15 via-colors-quantum-silver/25 to-colors-quantum-silver/15 px-2 transition-max-height duration-1000 ${
-                          isOpen ? "max-h-96 py-2" : "max-h-0"
-                        }`}
-                        style={{ overflow: "hidden" }}
-                      >
-                        {link.subLinks.map((link, index) => {
-                          return (
-                            <Link key={index + 1}>
-                              <li>{link.name}</li>
-                            </Link>
-                          );
-                        })}
-                      </ul>
-                    </li>
-                  );
+                  return <AccordionItem link={link} key={index + 1} />;
                 })}
               </ul>
             }
