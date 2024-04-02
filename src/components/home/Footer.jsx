@@ -19,9 +19,11 @@ const AccordionItem = ({ link }) => {
           <i>
             <img src={`/assets/svg/${link.icon}`} alt="" />
           </i>
-          <h3 className="text-lg">{link.title}</h3>
+          <h3 className="text-sm sm:text-lg uppercase text-emerald-400">
+            {link.title}
+          </h3>
         </div>
-        <i>
+        <i className="text-emerald-400">
           <ApiSharp />
         </i>
       </div>
@@ -110,7 +112,7 @@ function Footer() {
         {/* content container */}
         <div className="top flex flex-col md:flex-row py-6 gap-5 border-b">
           {/* first-content */}
-          <div className="first md:w-[50%] space-y-4 my-6 py-3">
+          <div className="first md:w-[50%] space-y-4 my-6 py-3" href="/contact">
             {/* logo */}
             <div className="logo-container">
               <img src="/assets/images/logo.svg" className="mx-auto" alt="" />

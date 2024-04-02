@@ -48,7 +48,10 @@ function Service() {
 
   //  h-[1050px] sm:h-[1100px] md:h-[1200px]
   return (
-    <div className="service w-[100%] h-[1300px] sm:h-[800px] md:h-[600px] py-10">
+    <div
+      className="service w-[100%] h-[1300px] sm:h-[800px] md:h-[600px] py-10"
+      href="/service"
+    >
       <div className="service-content w-full h-full px-5 space-y-10 md:space-y-0 items-center md:space-x-16 flex flex-col md:flex-row">
         {/* service features */}
         <div className="features-card grid grid-cols-1 sm:grid-cols-2 gap-4 w-full h-[70%] md:h-full">

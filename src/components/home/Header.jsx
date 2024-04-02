@@ -5,7 +5,6 @@ import { Link, useLocation } from "react-router-dom";
 // Importing React Icons
 import { RiMenu4Line } from "react-icons/ri";
 import { ArrowForward } from "@mui/icons-material";
-import { list } from "@material-tailwind/react";
 
 //  <Link to="/chat/chatting">Chat</Link>
 //  <Link to="/service">Service</Link>
@@ -29,22 +28,22 @@ function Header() {
     },
     {
       name: "About",
-      path: "#",
+      path: "/about",
       style: "",
     },
     {
       name: "Service",
-      path: "#",
+      path: "/service",
       style: "",
     },
     {
       name: "Price",
-      path: "#",
+      path: "/price",
       style: "",
     },
     {
       name: "Contact",
-      path: "#",
+      path: "/contact",
       style: "",
     },
   ];
@@ -81,12 +80,18 @@ function Header() {
                         list.style === "Active" &&
                         "bg-colors-quantum-silver/50 rounded-sm"
                       } p-1`}
+                      onClick={() => setIsOpen(false)}
                     >
                       {list.name}
                     </li>
                   </Link>
                 );
               })}
+              <Link to={"/auth"}>
+                <button className="flex space-x-1 h-10 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-2 font-medium text-slate-400 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                  Connect
+                </button>
+              </Link>
             </ul>
           </div>
 
@@ -131,13 +136,13 @@ function Header() {
 
               {/* auth button container */}
               <div className="auth-buttons hidden sm:flex flex-row items-center gap-2">
-                <Link to={"#"}>
+                <Link to={"/auth"}>
                   <button className="flex space-x-1 h-10 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-2 font-medium text-slate-400 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
                     Login
                   </button>
                 </Link>
 
-                <Link to={"#"}>
+                <Link to={"/auth"}>
                   <button className="flex space-x-1 h-10 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-2 font-medium text-slate-400 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
                     Connect
                   </button>

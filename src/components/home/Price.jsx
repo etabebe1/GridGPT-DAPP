@@ -96,7 +96,7 @@ function Price() {
   // sm:h-[1800px]
 
   return (
-    <section className="price">
+    <section className="price" href="/price">
       <div className="price-container h-full px-5 sm:px-10 pt-10 space-y-10">
         {/* text-content */}
         <div className="text-container flex flex-col md:flex-row gap-5 md:gap-5 items-center">

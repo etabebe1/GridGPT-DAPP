@@ -17,6 +17,7 @@ function About() {
 
   return (
     <section
+      href="/about"
       className="about overflow-x-hidden overflow-y-hidden h-[950px] sm:h-[700px] md:h-[650px]"
       style={{ width: "100vw" }}
     >

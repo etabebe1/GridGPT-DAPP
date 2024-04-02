@@ -77,7 +77,10 @@ function Faq() {
   ];
 
   return (
-    <main className="pt-0 flex flex-col justify-center gap-5 sm:gap-7">
+    <main
+      className="pt-0 flex flex-col justify-center gap-5 sm:gap-7"
+      href="/faq"
+    >
       <h2 className="font-bold text-xl sm:text-3xl text-center">
         Lorem ipsum dolor sit amet consectetur.
       </h2>

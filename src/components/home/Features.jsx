@@ -80,7 +80,10 @@ function Features() {
   ];
 
   return (
-    <section className="features h-[1610px] sm:h-[1000px] lg:h-[700px]">
+    <section
+      className="features h-[1610px] sm:h-[1000px] lg:h-[700px]"
+      href="/features"
+    >
       <div className="features-container h-full relative">
         {/* features-background */}
         <div className="bg-container h-full flex flex-col justify-between">

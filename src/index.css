@@ -239,4 +239,17 @@ body,
   }
 
   /* info section end */
+
+  /* auth section container start */
+  .auth {
+    font-family: "Open Sans", sans-serif;
+    background-image: url("../public/assets/images/login-bg.jpg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+  }
+
+  /* auth section container end*/
 }

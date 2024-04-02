@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 // Internal Import
 import { useStateContext } from "../context/context";
@@ -17,28 +18,31 @@ import {
   Service,
 } from "../components/home/z-index";
 
+// Importing React Icons
+
 function Home() {
   const { listMembership } = useStateContext();
 
   return (
-    <div className="home text-white fixed">
+    <main className="home text-white fixed">
       <Header />
+
       <div
         className="component-container overflow-y-auto relative top-[64px]"
         style={{ height: "calc(100vh - 64px)" }}
       >
-        <HeroSection />
-        <Service />
-        <About />
+        <HeroSection href="/" />
+        <Service href="/service" />
+        <About href="/about" />
         <AboutRight />
         <AboutThird />
-        <Features />
-        <Price />
+        <Features href="/features" />
+        <Price href="/price" />
         <Faq />
         <Info />
-        <Footer />
+        <Footer href="/contact" />
       </div>
-    </div>
+    </main>
   );
 }
 
