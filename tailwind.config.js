@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       // tailwind.config.js code
+
       animation: {
         shimmer: "shimmer 2s linear infinite",
       },

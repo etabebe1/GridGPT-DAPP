@@ -251,5 +251,16 @@ body,
     background-repeat: no-repeat;
   }
 
+  @keyframes spinY {
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .neural-head {
+    transform-origin: center;
+    animation: spinY 4s linear infinite;
+  }
+
   /* auth section container end*/
 }
